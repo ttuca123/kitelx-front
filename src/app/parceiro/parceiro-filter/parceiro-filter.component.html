@@ -1,0 +1,36 @@
+<div  class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="row">
+    <div class = "col-sm-3" style="min-width:fit-content">     
+
+ <form  
+  fxLayout="column"
+  style="background-color: #3A5B79; margin-right: 2rem; min-height: max-content; padding: 2rem;"
+  fxLayoutAlign="start stretch"
+  #spotForm="ngForm"  
+  id="frm_spot_form">  
+
+  <div class="form-group" >
+      <mat-label class="LabelSimples">Nome </mat-label>
+      <input type="text"  placeholder="Digite o nome do parceiro" id="parceiro">          
+  </div>   
+
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <a class="Button Button--orange-home"  routerLink="/parceiro/novo" >
+      Novo
+    </a> 
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" >
+      <a class="Button Button--orange-home"   >
+        Buscar
+      </a> 
+      <a class="Button Button--orange-home"    >
+        Limpar
+      </a>     
+    </div>    
+  </form>
+</div>
+<div class = "col">  
+   
+</div>
+</div>

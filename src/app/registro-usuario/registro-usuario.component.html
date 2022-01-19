@@ -1,0 +1,226 @@
+<div layout="column" layout-fill  style="background: url(assets/images/background/1.jpg); margin-left: auto; margin-right: auto; margin-top: 20px;">
+    
+    
+    <div  layout-fill [ngStyle]="{'color': 'white'}">
+      
+      <div align="center" layout="row" layout-align="center center" style="opacity : 0.8;">
+        <mat-card
+          class="info-card mat-elevation-z8"
+          flex="80"
+          style="margin-top: 0px;max-width: 800px;;"
+        >
+          <img src="{{usuario.fotoUrl}}" (error)="setDefaultPic()" width="100" height="100" class="imgPrincipal" />                                
+    
+    
+          <mat-card-title> {{titulo}} </mat-card-title>     
+      
+          <mat-card-content fxLayout="column" fxLayoutAlign="center">       
+            <mat-hint *ngIf="submitted">
+                <div class="alert alert-success" role="alert">
+                  {{msgSucesso}}
+        
+                </div>
+            </mat-hint>
+            <mat-hint *ngIf="error">
+                <div class="alert alert-danger" role="alert">
+                  {{msgErro}}
+        
+                </div>
+            </mat-hint>
+              
+            <form
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+              #usuarioForm="ngForm"
+              (ngSubmit)="onSubmit()"
+              id="frm_cadastro_form"
+            >
+            <div fxFlex="100" fxLayoutAlign="start">
+              <h4>Dados do Usuário:</h4>
+            </div>       
+              <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+                <mat-form-field fxFlex="45">
+                  <input
+                    id="ipt_primeiro_nome"
+                    name="primeitro_nome"
+                    autocomplete="off"
+                    required
+                    minlength="3"
+                    matInput
+                    type="text"
+                    class="form-control"
+                    value=""
+                    placeholder="Primeiro Nome"
+                    [(ngModel)]="usuario.primeiroNome"
+                    #nomeField="ngModel"
+                  />              
+                </mat-form-field>
+      
+                <mat-form-field fxFlex="45">
+                  <input
+                    id="ipt_ultimo_nome"
+                    name="ultimo_nome"
+                    autocomplete="off"
+                    required
+                    minlength="3"
+                    matInput
+                    type="text"
+                    class="form-control"
+                    value=""
+                    placeholder="Último Nome"
+                    [(ngModel)]="usuario.ultimoNome"
+                    #nomeField="ngModel"
+                  />              
+                </mat-form-field>
+                
+              </div>        
+      
+              <div fxFlex="100" fxLayoutAlign="start">
+                <h4>Informações Complementares:</h4>
+              </div>
+      
+              <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+                  <mat-form-field fxFlex="45">
+                      <input
+                        id="ipt_cpf"
+                        name="cpf"
+                        autocomplete="off"
+                        required                    
+                        matInput
+                        maxlength="14"
+                        type="text"
+                        class="form-control {{ (usuario.cpf === '' || usuario.cpf === undefined) ? '' : cpfValido ? 'is-valid' : 'is-invalid' }}"
+                        value=""
+                        placeholder="CPF"
+                        [(ngModel)]="usuario.cpf"                    
+                        #inputCpf
+                        (input)="validarCpf(inputCpf.value)"                    
+                      />
+                    </mat-form-field>
+                    <mat-form-field fxFlex="45">
+                        <input
+                          id="ipt_email"
+                          name="email"
+                          autocomplete="off"
+                          required
+                          minlength="7"
+                          matInput
+                          type="email"
+                          class="form-control"
+                          value=""
+                          placeholder="Email"
+                          [(ngModel)]="usuario.email"
+                          [disabled]="loginSocial"
+                        />
+                      </mat-form-field>
+                  
+                </div>
+      
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+                    <mat-form-field fxFlex="45">
+    
+                      
+                        <input
+                          id="ipt_fone"
+                          name="fone"
+                          autocomplete="off"
+                          maxlength="16"
+                          matInput
+                          type="text"
+                          class="form-control"
+                          value=""
+                          placeholder="Fone"
+                          [(ngModel)]="usuario.fone" 
+                          #fone1Field = "ngModel"
+                          required
+                          (input)="formatarFone(fone1Field.value)"                    
+                        />                   
+                      </mat-form-field>                                          
+                 
+                    <mat-form-field fxFlex="45" *ngIf="false">
+                      <mat-label>Perfil</mat-label>
+                      <mat-select
+                        id="slt_perfil"
+                        name="perfil"
+                        class="form-control"
+                        #Perfil                        
+                        placeholder="Perfil"
+                        [(ngModel)]="usuario.tipo">                 
+                        <mat-option [value]="perfil.id" *ngFor="let perfil of perfis">{{ perfil.descricao }}</mat-option>                
+                    </mat-select>
+                    </mat-form-field>
+                  </div>
+    
+                  <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start" *ngIf="!edit">
+    
+                    <mat-form-field fxFlex="45">    
+                      
+                      <input
+                        id="ipt_senha"
+                        name="senha"
+                        autocomplete="off"                    
+                        matInput
+                        [type]="hide ? 'password' : 'text'"
+                        class="form-control"
+                        value=""
+                        placeholder="Senha"
+                        [(ngModel)]="usuario.senha" 
+                        #senha = "ngModel"
+                        required                    
+                        >                   
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>  
+    
+    
+                    <mat-form-field fxFlex="45">
+    
+                      
+                      <input
+                        id="ipt_contrasenha"
+                        name="contrasenha"
+                        autocomplete="off"
+                        
+                        matInput
+                        [type]="hide ? 'password' : 'text'"
+                        class="form-control"
+                        value=""
+                        placeholder="Confirma Senha"
+                        [(ngModel)]="usuario.contraSenha" 
+                        #contraSenha = "ngModel"
+                        required                    
+                      >                   
+                      <button type="button" mat-icon-button matSuffix (click)="hide = !hide"  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>     
+    
+                  </div>
+
+                  <mat-dialog-actions>
+                    <button class=" m-r-20 hidden-sm-up" mat-raised-button color="warn" type="button" (click)="aceiteTermosUso()" >Termos de Uso! 
+                      <mat-icon [matBadge]="usuario.totalEquipamentos" matBadgePosition="above after" *ngIf="usuario.totalEquipamentos>0">sports_cricket</mat-icon></button>
+
+                    <button class=" m-r-20 hidden-sm-up" mat-raised-button color="warn" type="button" (click)="meusEquipamentos()" *ngIf="usuario.id!=null">Meus Equipamentos! 
+                      <mat-icon [matBadge]="usuario.totalEquipamentos" matBadgePosition="above after" *ngIf="usuario.totalEquipamentos>0">sports_cricket</mat-icon></button>
+                    <button class=" m-r-20 hidden-sm-up" mat-raised-button color="warn" type="button" (click)="meusAnuncios()" *ngIf="usuario.id!=null">Meus Anúncios! 
+                        <mat-icon [matBadge]="0" matBadgePosition="above after" *ngIf="false">sports_cricket</mat-icon></button>
+                    <button
+                      id="btn_salvar"
+                      class=" m-r-20 hidden-sm-up"
+                      mat-flat-button color="primary"                      
+                      type="submit"
+                      [disabled]="!usuarioForm.valid || !cpfValido"
+                      
+                    >
+                  SALVAR
+              </button>              
+            </mat-dialog-actions>
+            </form>
+          </mat-card-content>
+          
+        </mat-card>
+      </div>
+      </div>
+    </div>

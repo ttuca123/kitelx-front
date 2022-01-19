@@ -1,0 +1,10 @@
+<h2><span>Painel Administrativo</span></h2>
+<p></p>
+<mat-grid-list  cols="4" rowHeight="100px">
+    <mat-grid-tile
+        *ngFor="let item of itens"
+        [colspan]="1"
+        [rowspan]="1" [routerLink]='item.state' >
+        <mat-icon>{{item.icon}}</mat-icon><span style="font-size: medium;"> {{item.name}} </span>    
+    </mat-grid-tile>
+  </mat-grid-list>

@@ -1,0 +1,33 @@
+.card-body {
+    background-color: #213D5B;
+    border: none;
+  //  box-shadow: 0px 10px 30px rgb(107 107 107 / 15%);
+    height: 250px;
+
+    .card-title {
+      color: #fff;
+      font-family: Roboto;
+      letter-spacing: .5pt;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  button {
+    margin:1px;
+    width: 100%;
+    display: block;
+  }
+
+  .block {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    border: none;
+    background-color: #FB6A49;
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }

@@ -1,0 +1,90 @@
+<div fxLayout="row">
+  <div fxLayoutAlign="end">
+    
+    <a id="maior-portal" class="navbar-brand" routerLink="/pagina-inicial">
+      <img src="assets/images/banners/maior_portal.png" alt="homepage" class="logo2" >
+      <span fxShow="true" ></span>
+    </a>
+  </div>
+  <div fxLayoutAlign="end center">  
+    
+   
+    
+    <a class="btn-anuncie" style="color: white;" (click)="loginComParametros('/anuncio/anunciar')" >
+      <span>Quero Anunciar </span>
+    </a>
+    
+    <a class=" btn-anuncie" style="color: white;" (click)="loginComParametros('/equipamento-proprietario')">
+      <span>Registrar Equipamento </span>
+    </a>   
+
+    <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
+      <img src="{{usuario.fotoUrl}}" (error)="setDefaultPic()" alt="user" class="profile-pic" >
+    </button>
+
+    <mat-menu #profile="matMenu" class="mymegamenu">
+      <div id="menu-comum" *ngIf="!exibirMenuAdministrativo">
+        <button mat-menu-item routerLink="/pagina-inicial">
+          <mat-icon>home</mat-icon> Home
+        </button>
+        <button mat-menu-item (click)="login()" *ngIf="usuario.id==null">
+          <mat-icon>input</mat-icon> Entrar
+        </button>        
+        <button mat-menu-item (click)="irParaPerfil()" *ngIf="usuario.id!=null">
+          <mat-icon>account_box</mat-icon> Perfil
+        </button>
+        <button mat-menu-item *ngIf="usuario.id!=null" (click)="trocarSenha()">
+          <mat-icon>published_with_changes</mat-icon> Trocar Senha
+        </button>
+        <button mat-menu-item  *ngIf="usuario.id!=null" routerLink="/equipamento-proprietario">
+          <mat-icon>apps</mat-icon> Meus Equipamentos
+        </button>
+        <button mat-menu-item *ngIf="usuario.id!=null" routerLink="/anuncio/meus-anuncios">
+          <mat-icon>apps</mat-icon> Meus Anúncios
+        </button>
+        
+      </div>
+      <div id="menu-administrativo" *ngIf="exibirMenuAdministrativo">
+        <mat-divider></mat-divider>       
+        <button mat-menu-item *ngIf="usuario.id!=null" routerLink="/painel-administrativo">
+          <mat-icon>apps</mat-icon> Área Administrativa
+        </button>        
+        <mat-divider></mat-divider>       
+        
+        <button mat-menu-item (click)="gerenciarSpots()" >
+          <mat-icon>arrow_right</mat-icon> Spots
+        </button>
+        <button mat-menu-item (click)="gerenciarSpots()" >
+          <mat-icon>arrow_right</mat-icon> Usuários
+        </button>
+        <button mat-menu-item (click)="gerenciarSpots()" >
+          <mat-icon>arrow_right</mat-icon> Equipamentos
+        </button>
+        <button mat-menu-item (click)="gerenciarSpots()" >
+          <mat-icon>arrow_right</mat-icon> Anúncios
+        </button>
+       
+       
+
+      </div>      
+      <div *ngIf="localUser?.perfil===1">
+        <mat-divider></mat-divider>  
+            
+        <button mat-menu-item  routerLink="/painel-administrativo" >
+          <mat-icon>miscellaneous_services</mat-icon> Área Administrativa
+        </button>
+        <button mat-menu-item (click)="sincronizacaoS3()" >
+          <mat-icon>published_with_changes</mat-icon> Sincronizar Fotos
+        </button> 
+      </div>
+
+      <button mat-menu-item *ngIf="false">
+        <mat-icon>notifications_off</mat-icon> Disable notifications
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()" *ngIf="usuario.id!=null">
+        <mat-icon>exit_to_app</mat-icon> Sair
+      </button>
+    </mat-menu>
+  </div>
+</div>

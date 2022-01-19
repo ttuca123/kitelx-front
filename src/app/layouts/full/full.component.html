@@ -1,0 +1,85 @@
+<div class="main-container" >
+  <header>
+    <h1 class="d-none">KiteLX - Compra e Venda Equipamento de Kitesurf</h1>
+    <mat-toolbar color="primary" class="topbar relative">
+        <div class="header__logo">
+          <a class="header__back-button" (click)="voltar()" *ngIf="habilitaVoltar">
+            <span class="material-icons" >
+              keyboard_backspace
+            </span>
+          </a>
+          <a title="KiteLX - Compra e Venda Equipamento de Kitesurf" class="navbar-brand" href="/">
+            <img src="assets/images/logo_300x300.png" alt="homepage" class="logo" />
+            <span fxShow="true" ></span>  
+          </a>
+        </div>
+
+        
+
+        <span fxFlex></span>
+        <nav>
+          <h2 class="d-none">Navegação para cadastro e gerenciamento de anuncioas e conta.</h2>
+          <app-header></app-header>
+        </nav>
+    </mat-toolbar>
+  </header>
+  
+  <mat-sidenav-container  [style.marginTop.px]="mobileQuery.matches ? 0 : 0"  >
+    <mat-sidenav-content class="page-wrapper" style="overflow-x: hidden; " >
+      <main>
+        <router-outlet><app-spinner></app-spinner></router-outlet>          
+      </main>
+      <footer class="page-footer font-small blue pt-4" style="background-color: #213D5B;">
+        <div class="container-fluid text-center text-md-left" style="max-width: 450px;">
+          
+          <div fxLayout="row" fxLayoutAlign="center center" >
+            <a href="/">
+              <img class="img-fluid" src="/assets/images/logo_branca.png" style="margin:auto ;width: 120px; ">
+            </a>
+    
+          </div>
+          <p></p>
+          <div fxLayout="row" fxLayoutAlign="space-evenly center" style="color: white;">
+            
+            <a href="https://www.facebook.com/lxkite" target="_blank">
+              <img style="width: 16px; " src="assets/images/icon/facebook-f-brands.png">
+            </a>
+            <a href="https://www.youtube.com/channel/UC_kFJq7cfRUor7biVc9Yfjg" target="_blank">
+              <img style="width: 16px;" src="assets/images/icon/youtube-brands.png">
+            </a>
+            <a href="https://www.instagram.com/kite_lx/" target="_blank">
+              <img style="width: 16px;" src="assets/images/icon/instagram-brands.png">
+            </a>                  
+            <a href="https://www.windguru.cz/" target="_blank">
+                <img class="img-fluid"  src="assets/images/icon/wind-guru.png">
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5521995735225&text=Olá, preciso de sua ajuda sobre a KiteLX.."style="color: white;font-size: 30px;">
+              <img style="width: 16px;" src="assets/images/icon/whatsapp-brands.png" alt="">
+            </a>                 
+          </div>
+          <p></p>
+          <div class="row"  style="color: white; margin: 2px;">
+            <div class="col sm-3">
+              <h6 class="text-uppercase" style="font-size: small;">Sobre Nós</h6>
+            </div>
+            <div class="col sm-3">
+              <h6 class="text-uppercase" style="font-size: small;" (click)="exibirTermodeUso()">Termos de uso</h6>
+            </div>
+            <div class="col sm-3">
+              <h6 class="text-uppercase" style="font-size: small;" (click)="exibirComoUsar()">Como Usar?</h6>
+            </div>
+          </div>
+          
+        </div>
+        <div class="footer-copyright text-center py-1" style="background-color: #000; min-height: 1rem; color: white; bottom: 1rem;">
+          © 2020 Kite LX - Classificados de KiteSurf
+          <br>
+          Todos os direitos reservados
+        </div>
+      </footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+  
+  

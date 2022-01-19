@@ -1,0 +1,38 @@
+
+  
+  <div class="row justify-content-md-center" *ngIf="viewLoading else AnuncioDestaque">   
+    <div class="row" *ngFor='let i of total'>
+
+      <div class="col-md-auto" >
+        <div style="padding: 2px;">
+          <p-skeleton shape="card" size="300px" borderRadius="16px"></p-skeleton>         
+          <p></p>        
+        </div>
+      </div>      
+    </div>
+  </div>
+
+  <ng-template #AnuncioDestaque>
+    <div class="panel panel-default" >
+    <div  class="container anuncio2" >     
+      <div class="row justify-content-md-center" >   
+        <div class="col-md-auto " *ngFor="let anuncio of anuncios;">        
+
+            <anuncio-item [anuncio]='anuncio' ></anuncio-item>        
+          <p></p>
+        </div>          
+      </div> 
+      <div fxLayout="row" >
+          <img src="" />
+
+      </div>
+      
+      <div fxLayout="row" fxLayoutAlign="end center" >
+        
+        <button class="btn-anuncie-body" routerLink='/anuncio/filtro'  >
+          Veja todos os anúncios ({{total}})
+          </button>
+      </div>
+    </div>   
+  </div>
+</ng-template>

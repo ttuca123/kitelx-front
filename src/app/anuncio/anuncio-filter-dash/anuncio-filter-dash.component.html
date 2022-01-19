@@ -1,0 +1,36 @@
+<mat-card >
+    <mat-card-header>   
+      <div fxLayout="row" fxLayoutAlign="center center" >
+        
+        <small><a  class="nav-link " (click)='filtrarTipoEquipamento(0)'  id="home-tab"  data-toggle="tab"  role="tab" aria-controls="home" aria-selected="false" style="color: #aeaeba;text-decoration: underline;">Comprar Kite</a></small>
+                
+        <small><a class="nav-link " id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true" (click)='filtrarTipoEquipamento(2)' style="color: #aeaeba; text-decoration: underline;">Comprar Prancha</a></small>
+                
+        <small><a  [ngClass]="{'nav-link': 'true', 'active':'false'} " id="profile-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true" routerLink='/anuncio/anunciar' role="tab" style="color: #F86A49; text-decoration: underline;" >Quero Vender</a></small>
+      </div>
+      
+    </mat-card-header>
+    <mat-card-content >
+        <div fxLayout="row" fxLayoutAlign="center center" >           
+            
+          <p-listbox  id="lista"  [group]="true" [options]="groupedMarcasModelos" (input)="search(ValorFiltro)" #ValorFiltro [(ngModel)]="filtro" 
+              filterPlaceHolder="Digite Marca ou Modelo do equipamento"  
+              [metaKeySelection]='false'  [checkbox]="false" [filter]="true" (onClick)='escolherItem($event)'
+              [listStyle]="{'max-height':'250px', 'position':'absolute', 'background-color': 'white'}" >                
+             
+             <ng-template let-marcaModelo pTemplate="item"  >
+                    <div class="marcaModelo-item"  >
+                        <img src="assets/showcase/images/demo/flag/flag_placeholder.png" *ngIf="false" />
+                        <div >{{marcaModelo.label}}</div>
+                    </div>
+              </ng-template>               
+            </p-listbox>         
+            
+                <button class="btn-anuncie"  style="max-width: 300px; height: 50px; font-size: large; margin: 8px;" routerLink="/anuncio/filtro">
+                    Ver Ofertas ({{total}})
+                </button>
+            
+        </div>
+    </mat-card-content>     
+    
+    </mat-card>

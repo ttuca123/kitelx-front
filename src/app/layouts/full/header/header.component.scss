@@ -1,0 +1,262 @@
+::ng-deep {
+  .mat-toolbar {
+    box-shadow: none !important;
+  }
+
+  .mat-toolbar.mat-primary {
+    background-color: #fff !important;
+  }
+  .logo {
+    width: 110px;
+    height: 40px;
+    padding: 2px;
+  }
+
+  .logo2 {
+    width: 120px;
+    height: 100px;
+    //padding: 2px;
+  }
+
+
+  @media (min-width:787px){
+    #maior-portal{
+      display:block;
+
+    }
+
+    a {
+    color: white;
+    
+   }
+    .btn-anuncie {
+      display: block;
+      background-color: #F86A49;
+      color: #fff;      
+      border: none;
+      font-size: 0.5rem;
+      padding: 5px;
+      font-weight: bold;
+      border-radius: 57%;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      user-select: none;
+      text-decoration: none;
+      border-radius: 30px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      border-image: initial;
+      margin-right: 1rem;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      transition: all 1.0s;
+
+      &:hover {
+        background-color: #f74922;        
+        box-shadow: 1px 2px 5px #888888;
+      }
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+
+        :after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
+      }
+    }
+
+    .btn-anuncie-body {
+      display: block;
+      background-color: #F86A49;
+      color: #fff;      
+      border: none;
+      font-size: 0.5rem;
+      padding: 5px;
+      font-weight: bold;
+      border-radius: 57%;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      user-select: none;
+      text-decoration: none;
+      border-radius: 30px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      border-image: initial;
+      margin-right: 1rem;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      transition: all 1.0s;
+
+      &:hover {
+        background-color: #f74922;        
+        box-shadow: 1px 2px 5px #888888;
+      }
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+
+        :after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
+      }
+    }
+
+    .btn-login {
+      display: block;
+      background-color: #152e4d;
+      color: #fff;
+      border: none;
+      font-size: 0.5rem;
+      padding: 5px 20px;
+      font-weight: bold;
+      border-radius: 57%;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      text-decoration: none;
+      border-radius: 30px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: transparent;
+      -o-border-image: initial;
+      border-image: initial;
+      margin-right: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      transition: all 1.0s;
+
+      &:hover {
+        background-color: #121c29;
+        //box-shadow: 1px 2px 5px rgb(0 0 0 / 50%);
+        box-shadow: 1px 2px 5px #888888;
+      }
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+
+        :after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
+      }
+    }
+    
+    .btn-anuncie:hover span {
+      padding-right: 25px;
+      color: blue;
+    }
+    
+    .btn-anuncie:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    
+}
+
+@media (max-width:786px) {
+  
+  #maior-portal{
+    display:none;
+
+  }
+
+  .btn-anuncie{
+
+    display: none;
+  }
+
+.btn-anuncie-body{
+  
+  display: block;
+  background-color: #F86A49;
+  color: #fff;      
+  border: none;
+  font-size: 0.5rem;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 57%;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+  text-decoration: none;
+  border-radius: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: initial;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  transition: all 1.0s;
+
+  &:hover {
+    background-color: #f74922;        
+    box-shadow: 1px 2px 5px #888888;
+  }
+
+  span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+    :after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+  }
+}
+
+  
+}
+ 
+}

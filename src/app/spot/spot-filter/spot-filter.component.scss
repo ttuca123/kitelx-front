@@ -1,0 +1,81 @@
+
+  
+
+  
+
+  .SearchBar {
+    width: 70%;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    margin-right: 20px;
+    -webkit-transition: width .2s;
+    transition: width .2s;
+  }
+
+  .SearchBar__inputcontainer {
+    position: relative;
+    z-index: 11;
+    margin-bottom: 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .SearchBar__input {
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-image: url('https://www.webmotors.com.br/assets/img/icon/search.svg?t=2872');
+    background-position: left 9px center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px solid #ecedf2;
+    border-radius: 8px;
+    z-index: 4;
+    position: relative;
+    height: 47px;
+    padding-left: 40px;
+    padding-right: 0;
+    -webkit-transition: 0s;
+    transition: 0s;
+    font-size: 12px;
+  }  
+
+  .SearchBar__simples {
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-color: #fff;    
+    background-position: left 9px center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px solid #ecedf2;
+    border-radius: 8px;
+    z-index: 4;
+    position: relative;
+    height: 47px;
+    padding-left: 4px;
+    padding-right: 0;
+    -webkit-transition: 0s;
+    transition: 0s;
+    font-size: 12px;
+  }  
+
+  .Button--orange-home {
+    background-color: #f86a49!important;
+     -webkit-box-shadow: 0 8px 12px -8px #f86a49!important;
+     box-shadow: 0 8px 12px -8px #f86a49!important;
+     color:white!important;
+     border-radius: 8px!important;
+     width: 30%!important;
+     height: 47px!important;
+     margin: 1rem!important;;
+     padding: 0.5rem!important;
+  }
+
+  .LabelSimples {
+
+    color: white;
+  }

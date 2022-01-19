@@ -1,0 +1,38 @@
+<div  class="container-fluid shadow-sm p-3 mb-5 bg-white rounded" style="overflow:hidden; margin-bottom: 2px; ">
+    Filtro de Modelos
+    <div class="row">
+        <div class = "col-sm-3" style="min-width:fit-content">     
+
+          <form
+            style="background-color: #3A5B79; margin-right: 2rem; min-height: max-content; padding: 2rem;"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+            #anuncioForm="ngForm"    
+            id="frm_anuncio_form">                                                  
+
+              
+              <div class="form-group" >            
+                <mat-label class="LabelSimples">Descrição</mat-label>
+                <input id="descricao" name="descricao"  type="text" class="SearchBar__simples" placeholder="Digite a descrição"      
+                [(ngModel)]="modelo.descricao" [ngModelOptions]="{standalone: true}"
+                autocomplete="off" data-hj-whitelist="true" value="">      
+              </div>   
+              
+              <div fxLayout="row" fxLayoutAlign="center center" >
+                <a class="Button Button--orange-home"   (click)="buscar()">
+                  Buscar
+                </a> 
+                <a class="Button Button--orange-home"   (click)="limpar()" >
+                  Limpar 
+                </a>
+                <a class="Button Button--orange-home"   (click)="novo()">
+                  Novo *
+                </a> 
+                    
+              </div>    
+            </form>
+    </div>
+    <div class = "col" style="padding-top: 8px;">  
+      <app-modelo-list [modelo]='modelo' [modelos]='modelos' [pageForm]='pageForm' ></app-modelo-list>
+    </div>
+</div>

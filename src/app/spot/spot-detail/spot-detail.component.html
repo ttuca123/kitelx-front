@@ -1,0 +1,136 @@
+
+        <mat-card class="info-card mat-elevation-z8" flex="120"
+          style="max-width: 800px; margin-left: auto; margin-right: auto;">
+  
+          
+            <mat-carousel
+              timings="250ms ease-in"
+              [autoplay]="true"
+              interval="5000"
+              color="#f86a49"
+              style="height: 20rem;"
+              proportion="70"
+              slides="5"
+              [loop]="true"
+              [hideArrows]="false"
+              [hideIndicators]="false"
+              [useKeyboard]="true"
+              [useMouseWheel]="true" 
+                           
+            >
+              <mat-carousel-slide
+                #matCarouselSlide
+                *ngFor="let foto of spot.fotos; let i = index"
+                [image]="foto.nome"
+                [hideOverlay]="true"                
+              ></mat-carousel-slide>
+            </mat-carousel>
+          
+          <mat-card-title>
+            <h2> {{spot?.pico}} </h2>
+          </mat-card-title>  
+          
+          <mat-card-content>          
+            <div class="container">
+
+              <div class="row">                
+                &nbsp;<span>{{spot?.descricao}} </span>                              
+              </div>         
+
+              <div class="row">                
+                
+                <mat-label><b>  Como Chegar: </b> </mat-label>
+                  
+                &nbsp;<span>{{spot?.localPico}} </span>                              
+              </div>         
+              <p></p>
+              <div class="row">
+                
+                <mat-label><b> Temporada de Ventos: &nbsp;</b></mat-label>
+                <div *ngFor="let mes of spot.meses">
+                  <span>{{mes.nome}}  &nbsp;</span>
+                </div>                
+              </div>
+              <p></p>
+              <div class="row">
+                
+                <mat-label><b> Direção de Ventos: &nbsp;</b></mat-label>
+                <div *ngFor="let vento of spot.ventos">
+                  <span>{{vento.nome}}  &nbsp;</span>
+                </div>                 
+              </div>
+              <p></p>
+              <div class="row">
+                <p></p>
+                
+                <mat-label><b>  Suporte Local:</b> </mat-label>
+                  <p></p>
+                  &nbsp; <span>{{spot?.suporteLocal}} </span>                              
+              </div>  
+              <p></p>
+              <div class="row">
+                 <mat-label><b>Downwind: </b></mat-label>                 
+                 &nbsp;<span>{{spot?.downwind}}</span>
+              </div>
+              <p></p>
+              <div class="row">                
+                <mat-label><b>Dicas Hospedagem: </b></mat-label>
+                <p></p>
+                &nbsp;<span> {{spot?.hospedagem}}</span> 
+                
+              </div>  
+              <p></p>
+              <div class="row">                
+                <mat-label><b>Dicas Noturno: </b></mat-label>
+                  &nbsp; <span > {{ spot?.vidaNoturna }}</span>
+              </div>
+              <p></p>
+              <div class="row">                
+                  <mat-label><b>Local Velejo: </b></mat-label>
+                  &nbsp;<span> {{spot?.localVelejo}}    </span>
+              </div> 
+              <p></p>  
+              <div class="row">
+                <mat-label><b>Estilos de Velejo: </b></mat-label>      
+                <div *ngFor="let estilo of spot.estilosVelejo">
+                  <span>{{estilo.nome}}  &nbsp;</span>
+                </div>                              
+              </div>                                       
+              <p></p>
+              <div class="row">
+                <mat-label><b>Idiomas: &nbsp;</b></mat-label>
+                <div *ngFor="let idioma of spot.idiomas">
+                  <span>{{idioma.nome}}  &nbsp;</span>
+                </div>                           
+              </div>
+              <p></p>
+              <div class="row">
+                <mat-label><b>Moeda Local: </b></mat-label>                
+                &nbsp;{{spot.moeda.descricao}}                
+              </div>
+              <p></p>
+            </div>
+  
+          </mat-card-content>
+  
+          <mat-hint *ngIf="submitted">
+            <div class="alert alert-success" role="alert">
+              {{msgSucesso}}
+  
+            </div>
+          </mat-hint>
+  
+          <div fxLayout="row" *ngIf="localUser?.perfil==1 && !bloqueio">
+  
+            <mat-divider [inset]="true"></mat-divider>
+            <br />
+            <button id="btn_inserir" mat-button color="primary" type="button" (click)="editar()">
+              EDITAR
+            </button>
+  
+            <button id="btn_excluir" mat-button color="primary" type="button" (click)="excluir()">
+              EXCLUIR
+            </button>
+          </div>
+        </mat-card> 
+  

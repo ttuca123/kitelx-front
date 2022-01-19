@@ -1,0 +1,13 @@
+
+<div class="panel panel-default" *ngIf="spots?.length>0" style="max-width: 100%;">
+  <a routerLink='/spot/filtro'><img src="assets/images/banners/spots.jpg" class="img-fluid" alt="homepage" >    </a>
+    <div  class="container" style="max-width: 100%;"> 
+      
+      <div class="row justify-content-md-center" style="max-width: 100%;;margin: 0px;">          
+        <div class="col-md-auto " *ngFor="let spot of spots;">
+          <app-spot-item [spot]='spot' ></app-spot-item>
+          <p></p>
+        </div>
+      </div>             
+    </div>   
+  </div>

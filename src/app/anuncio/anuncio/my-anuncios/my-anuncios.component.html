@@ -1,0 +1,44 @@
+   
+<div  class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="row"> 
+  <div class = "col">
+    
+    <!--Tabela dinâmica para manipulação dos ítens de compra -->
+    <mat-panel-description>
+      
+      <div  class='mat-elevation-z8 container' > 
+        <mat-label>Meus Anúncios</mat-label> 
+        <a class="btn-anuncie" style="color: white;" routerLink="/anuncio/anunciar" style="max-width: 150px;" >
+          <span>Quero Anunciar</span>
+        </a>
+        
+        <div class="row">
+          <div class="col-sm-3">
+          <a class="btn-anuncie2" style="color: white;"
+          [routerLink]="['/anuncio/anunciar']">
+          Quero Anunciar
+        </a>
+      </div>
+
+        </div>
+        
+        
+        <div class="row justify-content-md-center" >
+          <div class="col-md-auto" *ngFor="let anuncio of usuario.anuncios;">
+            <anuncio-item [anuncio]='anuncio' [pagina]='pagina' [bloqueio]='bloqueio' ></anuncio-item>
+            <p></p>
+          </div>
+        </div> 
+        
+        
+      </div>
+    </mat-panel-description>    
+    </div>
+  </div>
+  </div>  
+
+
+
+
+    
+    

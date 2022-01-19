@@ -1,0 +1,56 @@
+<img src="assets/images/banners/spots.jpg" style="width: 100%;" alt="homepage" >
+<div  class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="row">
+  <div class = "col-sm-3" style="min-width:fit-content">     
+    <mat-card-title>
+      <h2> {{titulo}} </h2>
+    </mat-card-title>
+<form
+style="background-color: #3A5B79; margin-right: 2rem; min-height: max-content; padding: 2rem;"
+fxLayout="column"
+fxLayoutAlign="start stretch"
+#spotForm="ngForm"  
+id="frm_spot_form"> 
+
+  
+<div class="form-group" >      
+    <mat-label class="LabelSimples">Pico</mat-label>
+    <p></p>
+    <input id="ipt_pico" name="pico" type="text" matInput  placeholder="" style="background-color: white;" [(ngModel)]="spot.pico"/>       
+  </div>      
+
+  <div class="form-group">
+    
+      <mat-label  class="LabelSimples">Temporada de Ventos?</mat-label>
+      <mat-select  [(ngModel)]="spot.meses" [compareWith]='compare' multiple
+       class="form-control"
+        [ngModelOptions]="{standalone: true}" placeholder="Temporada de Ventos? ">
+          <mat-option  *ngFor="let mes of meses" [value]="mes"   >
+              <b> {{mes.nome}}</b>
+          </mat-option>
+      </mat-select>        
+      
+  </div> 
+ 
+  
+  
+  
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <a class="Button Button--orange-home"   (click)="buscar()">
+      Buscar
+    </a> 
+    <a class="Button Button--orange-home"   (click)="limpar()" >
+      Limpar
+    </a> 
+    <a class="Button Button--orange-home"  routerLink="/spot/novo" *ngIf="localUser?.perfil==1">
+      Novo
+    </a>     
+  </div>    
+</form>
+</div>
+<div class = "col">
+  <p></p>
+  <app-spot-list [spot]='spot' [spots]='spots' [pageForm]='pageForm'  ></app-spot-list>
+
+</div>
+</div> 
