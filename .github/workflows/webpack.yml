@@ -14,10 +14,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.0.1
-      uses: actions/setup-python@v4
+    - name: Set up Python 3.13.0-rc.2
+      uses: actions/setup-python@v3
       with:
-        python-version: 3.0.1
+        python-version: 3.13.0-rc.2
 
     - name: Verify Python version
       run: python --version
