@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: deploy_dist
-          path: dist/pages      
+          path: dist      
        
   deploy:
     name: Deploy
