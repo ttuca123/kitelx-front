@@ -1,0 +1,62 @@
+<div class="container_login" [ngStyle]="{'background-image':'url(./assets/images/background/back.png)'}">  
+      
+    <form style="text-align:'center';" fxLayout="column"
+      fxLayoutAlign="start stretch"
+      #usuarioForm="ngForm"
+      (ngSubmit)="resetarSenha()"
+      id="frm_reset_form">
+      <div style="width: 18rem;">
+        <img class="card-img-top" src="./assets/images/logo_300x300.png" />
+      </div>
+
+      <mat-card-content >  
+        <mat-hint *ngIf="submitted">
+          <div class="alert alert-success" role="alert">
+            {{msgSucesso}}
+  
+          </div>
+        </mat-hint>
+        <mat-hint *ngIf="error">
+            <div class="alert alert-danger" role="alert">
+              {{msgErro}}
+    
+            </div>
+        </mat-hint>
+        
+        
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Recuperação de Senha</mat-card-title>
+            </mat-card-header>          
+        <table   style="color:#FB6A49; padding: 16px;;">            
+
+          <tr>
+            
+            <td >
+              
+              <mat-form-field style="color:#FB6A49; padding-left: 16px;; padding-top: 2px;">                    
+                  
+                <mat-icon matSuffix>account_circle</mat-icon> 
+                <input id="email" name="email" matInput placeholder="Seu Email" [(ngModel)]="creds.email" required>                   
+                
+              </mat-form-field>
+            </td>
+          </tr>          
+      
+      </table>
+      <div class="footer" >
+        <mat-card-actions >                  
+            <button mat-raised-button  type="submit" >
+              Enviar
+              </button>              
+
+          </mat-card-actions>         
+      </div>
+
+      </mat-card>
+      
+      </mat-card-content>          
+    </form>       
+
+</div>
+

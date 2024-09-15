@@ -1,0 +1,212 @@
+  <div  class="container-fluid shadow-sm p-3 mb-5 bg-white rounded" style="overflow:hidden; margin-bottom: 2px; ">
+    <div class="row">
+        <div class = "col-sm-3" style="min-width:fit-content">     
+
+          <form
+            style="background-color: #3A5B79; margin-right: 2rem; min-height: max-content; padding: 2rem;"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+            #anuncioForm="ngForm"    
+            id="frm_anuncio_form">  
+
+            <div *ngIf="localUser?.perfil == 1">
+              <ng-template matStepLabel>Destaque?</ng-template>
+
+                <mat-slide-toggle   [(ngModel)]="anuncio.destaque"  [ngModelOptions]="{standalone: true}"
+                  >Destaque?</mat-slide-toggle>
+            </div>
+
+            <div class="form-group" *ngIf="false">      
+              
+                <mat-label class="LabelSimples">Localidade</mat-label>
+                <input type="text" class="SearchBar__input "  [matAutocomplete]="auto" placeholder="Digite a localidade do anúncio" id="localidade">
+              
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredLocais | async" [value]="option">{{option}}</mat-option>
+                </mat-autocomplete>
+            </div> 
+
+            <div class="form-group">
+              
+                <mat-label class="LabelSimples">Estado</mat-label>  
+                <mat-select id="estado" name="estado" #estadoField placeholder="Estado"
+                  [(ngModel)]="anuncio.estado.id" class="form-control" required >
+                  <mat-option [value]="estado.id" *ngFor="let estado of estados" (click)='carregarCidades(estado)'>
+                    {{ estado.nome }}
+                  </mat-option>
+                </mat-select>
+                
+              </div>
+            <div class="form-group" *ngIf="anuncio.estado.id!=null">
+              
+              <mat-label class="LabelSimples">Cidade</mat-label>  
+                <mat-select id="cidade" name="cidade" #cidadeField placeholder="Cidade"
+                  [(ngModel)]="anuncio.cidade.id" class="form-control" required>
+                  <mat-option [value]="cidade.id" *ngFor="let cidade of cidades" (click)="definirLocalidade(cidade)">
+                    {{ cidade.nome }}
+                  </mat-option>
+                </mat-select>
+                
+              
+            </div>
+
+              
+            <div class="form-group" >      
+                <mat-label class="LabelSimples">Equipamento</mat-label>
+                
+                <mat-select
+                  id="tipo"
+                  name="tipo"
+                  class="form-control"
+                  #tipoEquipamento
+                  placeholder=""
+                  [(ngModel)]="anuncio.tipo.id"
+                  style="background-color: white; margin-left: 1px; "
+                  required
+                >
+                <mat-option [value]="">Selecione uma opção</mat-option>        
+                  <mat-option
+                    [value]="tipo.id"
+                    *ngFor="let tipo of tipos;" (click)="carregarMarcas(tipo)">
+                    {{ tipo.descricao }}
+                  </mat-option>
+                </mat-select>
+              </div>
+
+              <div class="form-group" >      
+                <mat-label class="LabelSimples" *ngIf="anuncio.tipo.id==7">Tipo de Acessório</mat-label>
+                
+                <mat-select
+                  id="tipo"
+                  name="tipo"
+                  class="form-control"
+                  #tipoAcessorio
+                  placeholder=""
+                  [(ngModel)]="anuncio.acessorio.id"
+                  style="background-color: white; margin-left: 1px; "
+                  [ngModelOptions]="{standalone: true}"
+                  *ngIf="anuncio.tipo.id==7"
+                >
+                <mat-option [value]="">Selecione uma opção</mat-option>        
+                  <mat-option
+                    [value]="acessorio.id"
+                    *ngFor="let acessorio of acessorios;" >
+                    {{ acessorio.descricao }}
+                  </mat-option>
+                </mat-select>
+              </div>  
+
+
+              <div *ngIf="anuncio.tipo.id==0">
+                <mat-slide-toggle class="example-margin" #possuiBarra id="possuiBarra" name="possuiBarra" [(ngModel)]="anuncio.barra"      
+                [checked]="anuncio.barra" [ngModelOptions]="{standalone: true}"
+                ><mat-label class="LabelSimples">Possui Barra?</mat-label></mat-slide-toggle>
+              </div>    
+
+              <div class="form-group" *ngIf="anuncio.tipo.id!=null || anuncio.marca.id!=undefined">
+                <mat-label class="LabelSimples">Marca</mat-label>
+                  <mat-select
+                    id="marca"
+                    name="marca"
+                    #marca
+                    class="form-control"          
+                    placeholder="Marca"                          
+                    [(ngModel)]="anuncio.marca.id"   >
+                    <mat-option [value]="">Selecione uma opção</mat-option>        
+                    <mat-option
+                      [value]="marca.id"
+                      *ngFor="let marca of marcas" (click)="carregarModelos(marca)">          
+                      {{ marca.descricao}}
+                    </mat-option>
+                  </mat-select>  
+              </div>
+
+              <div class="form-group" *ngIf="anuncio.marca.id!=null || anuncio.modelo.id!=null">
+                <mat-label class="LabelSimples">Modelo</mat-label>
+                <mat-select
+                  id="modelo"
+                  name="modelo"
+                  class="form-control"
+                  #modelo        
+                  placeholder="Modelo"
+                  [(ngModel)]="anuncio.modelo.id"                               
+                >    
+                  <mat-option [value]="">Selecione uma opção</mat-option>        
+                  <mat-option
+                    [value]="modelo.id"
+                    *ngFor="let modelo of modelos"
+                  >
+                    {{ modelo.descricao }}
+                  </mat-option>
+                </mat-select>
+              </div>
+              
+              <div class="form-group" >            
+                <mat-label class="LabelSimples">Tamanho</mat-label>
+                <input id="tamanho" name="tamanho"  type="text" class="SearchBar__simples" placeholder="Digite o tamanho do equipamento"      
+                [(ngModel)]="anuncio.tamanho" [ngModelOptions]="{standalone: true}"
+                autocomplete="off" data-hj-whitelist="true" value="">      
+              </div>   
+                
+              <div class="form-group" >            
+                <mat-label class="LabelSimples">Ano</mat-label>
+                <input id="ano" name="ano" type="number" class="SearchBar__simples "
+                [(ngModel)]="anuncio.ano" [ngModelOptions]="{standalone: true}" #ano
+                placeholder="Digite o ano do equipamento" autocomplete="off" data-hj-whitelist="true" value="">      
+              </div>  
+              
+              <div class="form-group" >            
+                <mat-label class="LabelSimples">Valor Min. R$</mat-label>
+                <input id="ano" type="number" class="SearchBar__simples "
+                [(ngModel)]="anuncio.valorMinimo" [ngModelOptions]="{standalone: true}"
+                placeholder="Valor Minimo" autocomplete="off" data-hj-whitelist="true" value="">      
+              </div> 
+              
+              <div class="form-group" >            
+                <mat-label class="LabelSimples">Valor Max. R$</mat-label>
+                <input id="vlr_min" type="number" class="SearchBar__simples "
+                [(ngModel)]="anuncio.valorMaximo" [ngModelOptions]="{standalone: true}"
+                placeholder="Valor Minimo" autocomplete="off" data-hj-whitelist="true" value="">      
+              </div> 
+
+
+              <div *ngIf="localUser?.perfil == 1" class="form-group">
+                
+                  <ng-template matStepLabel>Ativo?</ng-template>
+                
+                  <mat-slide-toggle [(ngModel)]="anuncio.ativo" [ngModelOptions]="{standalone: true}">Ativo?</mat-slide-toggle>
+                
+                  <div *ngIf="!anuncio?.ativo">
+                    <div class="form-group">
+                      <mat-label class="LabelSimples">Data Inicio</mat-label>
+                      <input name="dataExclusaoInicio" matInput [matDatepicker]="picker" required placeholder="Escolha a Data de Exclusão Inicio"
+                        [(ngModel)]="anuncio.dataExclusaoInicio" />
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </div>
+
+                    <div class="form-group">
+                      <mat-label class="LabelSimples">Data Fim</mat-label>                      
+                      <input name="dataExclusaoFim" matInput [matDatepicker]="picker2" required placeholder="Escolha a Data de Exclusão Fim"
+                        [(ngModel)]="anuncio.dataExclusaoFim" />
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                    </div>
+                  </div>                
+              </div>
+
+              
+              <div fxLayout="row" fxLayoutAlign="center center" >
+                <a class="Button Button--orange-home"   (click)="buscar()">
+                  Buscar
+                </a> 
+                <a class="Button Button--orange-home"   (click)="limpar()" >
+                  Limpar 
+                </a>                    
+              </div>    
+            </form>
+    </div>
+    <div class = "col" style="padding-top: 8px;">  
+      <anuncio-list [anuncio]='anuncio' [anuncios]='anuncios' [pageForm]='pageForm' ></anuncio-list>
+    </div>
+</div>

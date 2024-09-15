@@ -1,0 +1,92 @@
+<div class="container_login" [ngStyle]="{'background-image':'url(./assets/images/background/back.png)'}">  
+      
+        <form style="text-align:'center';" fxLayout="column"
+          fxLayoutAlign="start stretch"
+          #usuarioForm="ngForm"
+          (ngSubmit)="logar()"
+          id="frm_cadastro_form">
+          
+          <img  src="./assets/images/logo_300x300.png" />
+          
+
+          <mat-card-content style="opacity : 0.8;">  
+            <mat-hint *ngIf="submitted">
+              <div class="alert alert-success" role="alert">
+                {{msgSucesso}}
+      
+              </div>
+            </mat-hint>
+            <mat-hint *ngIf="error">
+                <div class="alert alert-danger" role="alert">
+                  {{msgErro}}
+        
+                </div>
+            </mat-hint>
+            
+            <mat-card>
+              
+            <table   style="color:#FB6A49; padding: 16px;">
+              <tr>
+                
+                <td >
+                  
+                  <mat-form-field style="color:#FB6A49; padding-left: 16px;; padding-top: 2px;">                    
+                      
+                    <mat-icon matSuffix>account_circle</mat-icon> 
+                    <input matInput placeholder="Email" [(ngModel)]="usuario.email" name="username" required>                   
+                    
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+              <td>
+                
+                <mat-form-field style="color:#FB6A49; padding-left: 16px;; ">
+                  
+                <input matInput placeholder="Senha" [(ngModel)]="usuario.senha" name="password" required [type]="hide ? 'password' : 'text'">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field></td>
+            </tr>
+          <tr>
+            <td>
+              <div>
+              <a  style="font-size: 10px; font-weight: 800; color: #FB6A49; text-align: right;" (click)="irParaResetSenha()" >                
+                Esqueceu a senha?</a>  
+              </div>
+            </td>
+
+          </tr>
+          </table>
+          <div class="footer" >
+            <mat-card-actions >
+              
+                <button mat-raised-button  type="submit" >
+                  Entrar
+                  </button> 
+                  <button mat-raised-button type="button"  class="btn btn-social btn-google" (click)="signInWithGoogle()" >
+                      <span class="fa fa-google"></span> Google +</button>
+
+              </mat-card-actions>
+              <mat-card-actions >
+                
+                <a id="nova_conta"  (click)="registrar()" >                
+                  Criar Conta</a>                
+
+              </mat-card-actions>
+
+              <!--<mat-video title="KiteLX - O seu mais novo site de compra/venda de equipamentos" *ngIf="false"
+              [autoplay]="true" [preload]="true" [fullscreen]="true" [download]="false" spinner="spin" poster="image.png"
+              src="http://localhost/natureza.mp4"></mat-video> !-->
+              
+
+          </div>
+
+          </mat-card>
+          
+          </mat-card-content>          
+        </form>       
+    
+  </div>
+

@@ -1,0 +1,129 @@
+
+
+<div  [ngStyle]="{'background-image':'url(./assets/images/background/back.png)'}"> 
+
+    <div align="center" layout="row" layout-align="center center" >
+      <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded"
+                      style="opacity: 0.9; max-width: 800px;">  
+    <div class="row justify-content-md-center" *ngIf="marcaModelo == undefined else marcaModelo">   
+      <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
+        
+          
+            <div class="p-d-flex p-mb-3">              
+              
+                <div>
+                    <p-skeleton borderRadius="16px" animation='wave'></p-skeleton>
+                    <p-skeleton borderRadius="16px"></p-skeleton>
+                    <p-skeleton height=".5rem"></p-skeleton>
+                    <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                    <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                    <p-skeleton height=".5rem"></p-skeleton>
+                    <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                    
+                </div>
+            </div>
+            <p-skeleton width="100%" height="150px"></p-skeleton>
+    </div>
+    </div>
+  </div>
+  </div>
+  <ng-template #marcaModelo>
+  <div align="center" layout="row" layout-align="center center" >
+    <div class="container shadow-sm p-3 mb-5 bg-white rounded"
+                    style="opacity: 0.9; max-width: 800px;">                                    
+                    
+                      <form #MarcaModeloForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+                        (ngSubmit)="salvar()">
+                        
+                          Cadastrar Modelo
+
+                          <div class="form-group" >      
+                            <mat-label class="LabelSimples">Marca</mat-label>
+                            
+                            <mat-select
+                              id="marca"
+                              name="marca"
+                              class="form-control"
+                              #tipoEquipamento
+                              placeholder="Selecionar Marca"
+                              [(ngModel)]="modelo.idMarca"
+                              style="background-color: white; margin-left: 1px; "
+                              required
+                            >
+                            <mat-option [value]="">Selecione uma opção</mat-option>        
+                              <mat-option
+                                [value]="marca.id"
+                                *ngFor="let marca of marcas;" >
+                                {{ marca.descricao }}
+                              </mat-option>
+                            </mat-select>
+                          </div>
+
+
+                          <div class="form-group" >      
+                            <mat-label class="LabelSimples">Tipo de Equipamento</mat-label>
+                            
+                            <mat-select
+                              id="tipo"
+                              name="tipo"
+                              class="form-control"
+                              #tipoEquipamento
+                              placeholder=""
+                              [(ngModel)]="modelo.categoria"
+                              style="background-color: white; margin-left: 1px; "
+                              required
+                            >
+                            <mat-option [value]="">Selecione uma opção</mat-option>        
+                              <mat-option
+                                [value]="tipo.id"
+                                *ngFor="let tipo of tipos;" >
+                                {{ tipo.descricao }}
+                              </mat-option>
+                            </mat-select>
+                          </div>
+
+                          <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxFlex="45">
+                            <mat-form-field fxFlex="45" >
+                              <input id="descricao" name="descricao"
+                                matInput
+                                type="text"                         
+                                #marcaField="ngModel"                               
+                                class="form-control"  placeholder="Descrição"
+                                [(ngModel)]="modelo.descricao" required
+                                />
+                            </mat-form-field>
+                          </div>                                                                                      
+  
+                        <mat-divider [inset]="true"></mat-divider>                        
+                        
+                          <div >
+                            <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary"
+                              [disabled]="!MarcaModeloForm.valid">
+                              Publicar
+                            </button>
+                            <button class=" m-r-20 hidden-sm-up" mat-flat-button color="secondary" type="button"
+                              (click)="limparForm()">
+                              Limpar
+                            </button>
+                          </div>                                                 
+                        
+                          <mat-hint *ngIf="submitted">
+                            <div class="alert alert-success" role="alert">
+                              {{msgSucesso}}
+    
+                            </div>
+                          </mat-hint>
+
+                          <mat-hint *ngIf="error">
+                            <div class="alert alert-danger" role="alert">
+                              {{msgErro}}
+    
+                            </div>
+                          </mat-hint>
+
+                      
+                      </form>
+                    </div>  
+      </div>
+    </ng-template>
+  </div>

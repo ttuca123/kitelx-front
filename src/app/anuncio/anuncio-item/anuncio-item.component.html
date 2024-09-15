@@ -1,0 +1,62 @@
+
+
+<div id="teste" class="card card-style2" style="border-radius: 50px 50px 20px 20px !important;" >  
+
+  <mat-carousel
+    id="carousel1"
+    timings="250ms ease-in"
+    [autoplay]="false"
+    interval="5000"
+    color="orange"
+    maxWidth="" 
+    [proportion]="proporcao"
+    [slides]="anuncio.fotos.length"
+    [loop]="true"
+    [hideArrows]="false"
+    [hideIndicators]="false"
+    [useKeyboard]="true"
+    [useMouseWheel]="false"     
+    
+    
+  >
+    <mat-carousel-slide
+      id="carousel2"
+      #matCarouselSlide
+      *ngFor="let foto of anuncio.fotos; let i = index"      
+      [image]="foto.nome"      
+      [hideOverlay]="true"                 
+    ></mat-carousel-slide>
+    
+</mat-carousel>
+
+
+  <div class="card-body" (click)="detalhar(anuncio)">
+    <h5 class="card-title">{{anuncio?.tipo.descricao}} </h5>
+    <small>{{anuncio.localidade}}</small>
+    <ul>
+      <li *ngIf="anuncio.marca.id!=999">{{anuncio?.marca.descricao}}</li>
+      <li *ngIf="anuncio.marca.id==999 &&anuncio?.outraMarca.length>0">{{anuncio?.outraMarca}}</li>
+      <li *ngIf="anuncio.modelo.id!=999">{{anuncio?.modelo.descricao}}</li>
+
+      <li *ngIf="anuncio.modelo.id==999 &&anuncio?.outroModelo.length>0">{{anuncio?.outroModelo}}</li>
+
+
+      <div *ngIf="anuncio.tipo.id==7">
+        <li *ngIf="anuncio?.acessorio.id!=999">{{anuncio?.acessorio.descricao}}</li>
+        <li *ngIf="anuncio?.acessorio.id==999 && anuncio?.outroAcessorio!=undefined">{{anuncio?.outroAcessorio}}</li>
+      </div>
+      <li *ngIf="anuncio.tipo.id==0">Barra: {{anuncio.barra?'SIM':'NÃO'}}</li>
+      <li>Tam. {{anuncio?.tamanho}}</li>
+      <li>Ano. {{anuncio?.ano}}</li>
+      
+    </ul>
+
+  </div>
+  <mat-divider></mat-divider>
+  <div class="card-footer">
+    <span>{{anuncio.valor}}</span>    
+  </div>
+</div>
+
+
+

@@ -1,0 +1,21 @@
+
+#slides {
+  
+.carousel-slide {
+  width: 100%!important;
+  height: 100%;
+  position: absolute;
+  z-index: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+}
+
+
+
+.carousel-slide-overlay{
+  border-radius: 20px 20px 0px 0px;
+}
+
+}

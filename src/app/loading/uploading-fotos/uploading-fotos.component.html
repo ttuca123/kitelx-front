@@ -1,0 +1,9 @@
+<p-fileUpload name="demo[]" url="./upload.php" [auto]="true" (onUpload)="onUpload($event)" 
+    multiple="multiple" accept="image/*" maxFileSize="1000000"  uploadLabel="Subir Fotos" cancelLabel="Cancelar" chooseLabel="Escolher Fotos" fileLimit="5">
+    <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of fotos">{{file.nome}} - {{foto.size}} bytes</li>
+        </ul>
+    </ng-template>
+  </p-fileUpload>
+

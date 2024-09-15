@@ -1,0 +1,318 @@
+
+
+<b><div align="center" layout="row" layout-align="center center" >{{titulo}}</div></b>
+<form #spotForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+(ngSubmit)="inserir()">
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Informações Básicas do Spot
+      </mat-panel-title>      
+    </mat-expansion-panel-header>
+
+    
+      
+    
+    
+    <div  fxLayoutAlign="space-between start">
+        <fieldset fxFlex="45"> 
+          <mat-label>Destaque? </mat-label>  
+          <mat-checkbox id="destaque"
+          [(ngModel)]="spot.destaque"
+          [ngModelOptions]="{standalone: true}">
+
+          </mat-checkbox>         
+      </fieldset>
+      
+      <mat-form-field fxFlex="45">
+          
+            <input id="pico" name="pico"  type="text" #pico = "ngModel"
+            maxlength="90"  matInput placeholder="Pico?"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="spot.pico" />
+        </mat-form-field>
+    </div>
+    <div  fxLayoutAlign="space-between start">
+      <fieldset fxFlex="90">    
+          <mat-label>Descrição?</mat-label>
+          <textarea id="localPico" name="localPico"  type="text" #localPico = "ngModel"
+          maxlength="400"  matInput placeholder="Digite aqui como chegar"
+          [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="spot.descricao" >                
+          </textarea>               
+      </fieldset>     
+  </div>
+
+    <div  fxLayoutAlign="space-between start">
+        <fieldset fxFlex="90">    
+            <mat-label>Como Chegar?</mat-label>
+            <textarea id="localPico" name="localPico"  type="text" #localPico = "ngModel"
+            maxlength="400"  matInput placeholder="Digite aqui como chegar"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="spot.localPico" >                
+            </textarea>               
+        </fieldset>     
+    </div>
+   
+    <div  fxLayoutAlign="space-between start">
+        <fieldset fxFlex="90">               
+          <mat-label>Local Velejo?</mat-label>
+            <textarea id="localVelejo" name="localVelejo"  type="text" #localVelejo = "ngModel"
+            maxlength="400"  matInput placeholder="Digite aqui onde velejar" placeholder="Onde Velejar? " 
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="spot.localVelejo" ></textarea>            
+        </fieldset>           
+    </div>
+    <div  fxLayoutAlign="space-between start">                            
+
+      <fieldset fxFlex="45"> 
+        <mat-form-field fxFlex="45">
+          <mat-label>Estilos de Velejo</mat-label>
+          <mat-select [(ngModel)]="spot.estilosVelejo" [compareWith]='compare'
+            multiple placeholder="Estilo Velejo? "              
+            [ngModelOptions]="{standalone: true}">
+            <mat-option *ngFor="let estilo of estilosVelejo" [value]="estilo" >
+              <b>{{estilo.nome}}</b>
+              </mat-option>
+          </mat-select>
+        </mat-form-field>      
+      </fieldset>
+    </div>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()" type="button">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Informações metereológicas
+      </mat-panel-title>      
+    </mat-expansion-panel-header>
+    <div  fxLayoutAlign="space-between start">
+      <fieldset fxFlex="45">   
+        <mat-form-field fxFlex="45">          
+            <mat-label>Temporada de Ventos?</mat-label>
+            <mat-select  [(ngModel)]="spot.meses" [compareWith]='compare' multiple
+              [ngModelOptions]="{standalone: true}" placeholder="Temporada de Ventos? ">
+                <mat-option  *ngFor="let mes of meses" [value]="mes"   >
+                    <b> {{mes.nome}}</b>
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+      </fieldset>
+    </div>
+    <div  fxLayoutAlign="space-between start">
+        <fieldset fxFlex="45">  
+          <mat-form-field fxFlex="45">      
+          <mat-label>Direção dos Ventos?</mat-label>
+            <mat-select [(ngModel)]="spot.ventos" multiple [compareWith]='compare'
+              [ngModelOptions]="{standalone: true}" placeholder="Direção dos Ventos? " >
+                <mat-option *ngFor="let vento of ventos" [value]="vento" >
+                <b>{{vento.nome}}</b>
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </fieldset>
+      </div>
+      <mat-divider></mat-divider>      
+   
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()" type="button">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()" type="button">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Informações Regionais
+      </mat-panel-title>      
+    </mat-expansion-panel-header>
+
+    <div  fxLayoutAlign="space-between start">                            
+
+      <fieldset fxFlex="45">    
+        <mat-form-field fxFlex="45">
+          <mat-select  [(ngModel)]="spot.idiomas" [ngModelOptions]="{standalone: true}"
+            multiple [compareWith]='compare'  placeholder="Idioma? ">
+              <mat-option *ngFor="let idioma of idiomas" [value]="idioma" >
+                  <b> {{idioma.nome}}</b>
+              </mat-option>
+          </mat-select>
+        </mat-form-field>            
+      </fieldset>
+    </div>
+    <div  fxLayoutAlign="space-between start">                            
+
+      <fieldset fxFlex="45"> 
+        <mat-form-field fxFlex="45">
+
+          <mat-select id="moeda" name="moeda" #tipoAnuncioField placeholder="Moeda? "
+            [(ngModel)]="spot?.moeda.id" required>
+            <mat-option [value]="moeda.id" *ngFor="let moeda of moedas;"  >
+              {{ moeda.descricao }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>      
+      </fieldset>
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()" type="button">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()" type="button">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dicas e Informativos
+      </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div  fxLayoutAlign="space-between start">
+      <fieldset fxFlex="90">    
+          <mat-label>Suporte Local?</mat-label>
+          <textarea id="suporteLocal" name="suporteLocal"  type="text" #suporteLocal = "ngModel"
+          maxlength="400"  matInput placeholder="Digite aqui o suporte local" cols="40"
+          [ngModelOptions]="{standalone: true}"
+          [(ngModel)]="spot.suporteLocal" >                
+          </textarea>               
+      </fieldset>     
+  </div>
+    <div fxLayoutAlign="space-between start">                                
+        <fieldset fxFlex="90">      
+        <mat-label>Dicas?</mat-label>
+            <textarea id="dica" name="dica"  type="text" #dica = "ngModel"
+            maxlength="400"  matInput placeholder="Digite aqui sua dica"
+            [ngModelOptions]="{standalone: true}" cols="40"
+            [(ngModel)]="spot.dica" >            
+            </textarea> 
+            </fieldset>
+    </div>
+    <div fxLayoutAlign="space-between start">                                
+        <fieldset fxFlex="90">                                   
+            <mat-label>Vida Noturna?</mat-label>
+            <textarea id="vidaNoturna" name="vidaNoturna"  type="text" #dica = "ngModel"
+            maxlength="400"  matInput placeholder="Digite aqui como é a vida noturna"
+            [ngModelOptions]="{standalone: true}" cols="40"
+            [(ngModel)]="spot.vidaNoturna" >            
+            </textarea> 
+        </fieldset>
+      </div>
+
+
+      <div  fxLayoutAlign="space-between start">                                
+        <fieldset fxFlex="90">      
+        <mat-label>Hospedagem?</mat-label>
+            <textarea id="hospedagem" name="hospedagem"  type="text" #dica = "ngModel"
+            maxlength="400"  matInput placeholder="Digite aqui onde se hospedar"
+            [ngModelOptions]="{standalone: true}" cols="40"
+            [(ngModel)]="spot.hospedagem" >            
+            </textarea> 
+        </fieldset>
+      </div>
+      <div  fxLayoutAlign="space-between start">                                
+        <mat-form-field fxFlex="90">
+            <mat-label>Downwinds: </mat-label>
+            <textarea id="downwinds" name="downwinds"  type="text" #downwind = "ngModel"
+            maxlength="200"  matInput placeholder="Digite aqui o downwind"
+            [ngModelOptions]="{standalone: true}" cols="40"
+            [(ngModel)]="spot.downwind" >
+
+            </textarea>
+        </mat-form-field>
+          
+      </div>   
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()" type="button">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()" type="button">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Fotos
+      </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+        <div class="form-group">
+            <label for="file">Qtde: {{spot.fotos?.length}}</label>
+            <app-foto [fotos]='spot.fotos' (excluir)='removerFotos($event)'></app-foto>
+        </div>
+      </div>
+    
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()" type="button">Anterior</button>
+      <button mat-button color="primary" (click)="nextStep()" type="button">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dados do Parceiro (Opcional)
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header> 
+
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Finalizar
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header> 
+    <app-spot-detail [spot]='spot' [bloqueio]='bloqueio'></app-spot-detail>
+    <div *ngIf="spot.id==null">
+        <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="submit"
+          [disabled]="!spotForm.valid">
+          Publicar
+        </button>
+        <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+          (click)="limparForm()">
+          Limpar
+        </button>
+      </div>
+      <div *ngIf="spot.id!=null">
+        <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="submit">
+          Editar
+        </button>       
+      </div>
+    
+    <mat-hint *ngIf="submitted">
+      <div class="alert alert-success" role="alert">
+        {{msgSucesso}}
+
+      </div>
+    </mat-hint>
+    <mat-hint *ngIf="error">
+      <div class="alert alert-danger" role="alert">
+        {{msgErro}}
+
+      </div>
+    </mat-hint>
+
+    
+  </mat-expansion-panel>
+
+</mat-accordion>
+</form>
+

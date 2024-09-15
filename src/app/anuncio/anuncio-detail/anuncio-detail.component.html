@@ -1,0 +1,220 @@
+<div @fade layout-align="start">
+  <div [ngStyle]="{'color': 'white'}">
+
+    <div style="margin-left:1rem;">
+      <mat-card class="info-card mat-elevation-z8" flex="120"
+        style="max-width: 800px; margin-left: auto; margin-right: auto;">
+
+        <div layout="row">
+          <div class="slides">
+            <div class="slider" *ngFor="let foto of anuncio.fotos" >
+                <img class="img-fluid" [src]="foto.nome" >
+                
+            </div>
+          </div>
+        </div>
+        <mat-card-title>
+          <h2> {{anuncio.valor}} </h2>
+        </mat-card-title>
+
+        <mat-divider></mat-divider>
+        <mat-card-content>          
+          <div class="table-responsive-md"> 
+            <div class="row">
+              <p></p>
+              <div class="col">
+              <b>Descrição do Anúncio:</b>
+              </div> 
+              <div class="col">
+                <p><b>Publicado em : {{anuncio.dataPublicacao | date:DATA }}</b></p>
+                </div> 
+            </div>
+            <p></p>            
+            <div class="row">
+              <div class="col-sm-12">
+              <p>
+              
+                {{anuncio.observacao}}                
+              </p>
+              </div>
+              <p></p>              
+            </div>
+            <p></p>
+            <div class="row">
+              <div class="col">
+                <b>Tipo de Equipo:</b> {{anuncio.tipo.descricao}}
+                <p></p>
+              </div>
+              
+            </div>
+           
+            <div class="row">
+
+              <div class="col">
+                <b>Marca: </b><span *ngIf="anuncio.marca.id!=999 else outraMarca"> {{ anuncio.marca.descricao }}</span>               
+
+                <ng-template #outraMarca >
+                  {{ anuncio.outraMarca }}
+
+                </ng-template>
+              </div>
+              <div class="col">
+                <b>Modelo: </b><span *ngIf="anuncio?.modelo.id!=999 else outroModelo"> {{ anuncio.modelo.descricao }}</span>
+                <ng-template #outroModelo>
+                  {{ anuncio.outroModelo }}
+                </ng-template>                
+              </div>
+
+            </div>
+            <p></p>
+            <div class="row">             
+
+              <div class="col" *ngIf="anuncio.tipo.id==7">
+                <b>Tipo de Acessório: </b><span *ngIf="anuncio?.acessorio.id!=999 else outroAcessorio">{{anuncio?.acessorio.descricao}}</span>
+                <p></p>
+                <ng-template #outroAcessorio>
+                  {{anuncio?.outroAcessorio}}
+                </ng-template>
+                
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col">
+                       
+                <b>Ano: </b> {{anuncio.ano}}
+                <p></p>        
+              </div>
+              <div class="col">
+                <b>Tamanho: </b>{{anuncio.tamanho}}
+                <p></p>
+                
+              </div>
+            </div>
+            <p></p>
+            
+            <div class="row" *ngIf="anuncio.tipo.id==0">
+              <div class="col" >
+                <b>Barra:  {{anuncio.barra?'SIM':'NÃO'}}</b>                
+              </div>              
+            </div>
+
+            <div class="row" *ngIf="edicao && anuncio.dataExclusao != null ">
+              <div class="col">
+                <b>Nota:</b> {{anuncio.nota}}
+              </div>
+            
+            </div>
+
+            <div class="row" *ngIf="edicao && anuncio.dataExclusao != null ">
+              <div class="col">
+                <b>Motivo Exclusão:</b> {{anuncio.motivoExclusaoDesc}}
+              </div>            
+
+            </div>
+            <p></p>
+            <div class="row" *ngIf="edicao && anuncio.dataExclusao != null ">
+              
+              <div class="col">
+                <b>Observação Motivo Exclusão:</b> {{anuncio.lugarVenda}}
+              </div>
+            
+            </div>
+          </div>
+          <p></p>
+          <mat-divider [inset]="true"></mat-divider>
+          <div>
+            <h4>Dados do Anunciante:</h4>
+          </div>
+          <p></p>
+          <div class="container">
+            <div class="row">
+              <b>Anunciante: &nbsp;</b> {{anuncio.nomeAnunciante}}
+            </div>
+
+            <div class="row">
+              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+              <a [href]="linkZap" style="position:relative;
+              width:25px;
+              height:25px;              
+              right:4px;
+              background-color:#25d366;
+              color:#FFF;
+              border-radius:50px;
+              text-align:center;
+              font-size:25px;
+              opacity: 0.9;
+              box-shadow: 2px 2px 3px #999;
+              z-index:100;" target="_blank">
+                <i class="fa fa-whatsapp my-float"></i> 
+              </a>
+                <b> &nbsp;</b><a [href]="linkZap" target="_blank" style="color: #f86a49;">
+                {{anuncio.zapAnunciante}}</a>
+            </div>
+
+            <div class="row" >
+              <b>E-mail: &nbsp;</b> {{anuncio.emailAnunciante}}
+            </div>
+            <div class="row">              
+                localização: {{anuncio.localidade}}              
+            </div>
+          </div>
+
+        </mat-card-content>
+
+        <mat-hint *ngIf="submitted">
+          <div class="alert alert-success" role="alert">
+            {{msgSucesso}}
+
+          </div>
+        </mat-hint>        
+        <div fxLayout="row" *ngIf="edicao">
+
+          <mat-divider [inset]="true"></mat-divider>
+          <br />
+          <button id="btn_inserir" mat-button color="primary" type="button" (click)="editar()">
+            EDITAR 
+          </button>
+          <button id="btn_excluir" mat-button color="primary" type="button" (click)="excluirAnuncio()">
+            EXCLUIR
+          </button>
+          {{bloqueio}} {{localUser?.idUsuario}}        
+        </div>
+      <mat-card-content>
+        <div class="container">
+          <div class="row">
+          Compartilhar  &nbsp;
+        
+          
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  
+            <a  [href]="compartilhamentoZap"            
+            style="position:relative;
+            width:25px;
+            height:25px;              
+            right:4px;
+            background-color:#25d366;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            font-size:25px;
+            opacity: 0.9;
+            box-shadow: 2px 2px 3px #999;
+            z-index:100;" target="_blank">
+              <i class="fa fa-whatsapp my-float"></i> 
+            </a>
+            &nbsp;              
+          
+            <a [href]="compartilhamento" target="_blank" >
+              <img width="25" height="25" src="https://ayltoninacio.com.br/img/s/18w50.jpg" alt="">
+            </a>
+          </div>
+          
+        </div>
+      </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

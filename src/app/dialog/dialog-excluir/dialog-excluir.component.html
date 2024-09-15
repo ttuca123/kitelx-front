@@ -1,0 +1,77 @@
+<div mat-dialog-content>
+
+    <form #exclusaoAnuncioForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+    (ngSubmit)="confirmar()">
+
+    <label id="example-radio-group-label" class="font-weight-bold">Você vendeu um(a) <label id="example-radio-group-label" style="color: #FB6A49;">{{anuncio.tipo.descricao}}</label> ?</label><br>
+
+    <div  *ngIf="fotoPrincipal != undefined">
+        
+        <md-card flex="10">
+            <img style="border-radius: 16px !important; width: 85px; height:75px;" [src]="fotoPrincipal?.nome" alt="">
+        </md-card>]
+        
+   </div>
+    <p></p>
+    <mat-radio-group style="width: 100px;"
+        name="opcoes" required
+      aria-labelledby="example-radio-group-label"      
+      [(ngModel)]="anuncio.motivoExclusao">
+            
+            <mat-radio-button class="example-radio-button" *ngFor="let item of motivos$ | async" [value]="item.codigo">
+                {{item.descricao}}                
+            </mat-radio-button>            
+            
+    </mat-radio-group>
+
+    <mat-form-field style="margin-left: 0.5rem;" *ngIf="anuncio.motivoExclusao==1" >
+        <mat-label>Qual:</mat-label>
+        <input matInput  type="text"  name="motivoExclusao"  [(ngModel)]="anuncio.lugarVenda" #lugarVendaField="ngModel" >
+        
+    </mat-form-field>
+    <mat-divider></mat-divider>    
+    
+        <label>O quanto você indicaria a KiteLX para um amigo?</label>
+    <div fxLayout="row"  >
+        <mat-radio-group 
+         name="opcoes_nota" required
+        aria-labelledby="example-radio-group-label"      
+        [(ngModel)]="anuncio.nota">
+        <mat-radio-button class="example-radio-button" value="1">
+            1
+        </mat-radio-button>  
+        <mat-radio-button class="example-radio-button" value="2">
+            2
+        </mat-radio-button>  
+        <mat-radio-button class="example-radio-button" value="3">
+            3
+        </mat-radio-button>  
+        <mat-radio-button class="example-radio-button" value="4">
+            4
+        </mat-radio-button>  
+        <mat-radio-button class="example-radio-button" value="5">
+            5
+        </mat-radio-button>  
+    
+        </mat-radio-group>
+    </div>
+        Nota: {{anuncio.nota}}    
+    <hr/>
+
+</form>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions  align="center">
+  <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button" (click)="cancelar()" >Cancelar</button>
+  <button style="margin:1px;    display: block;  background-color: #FB6A49; color: white;" 
+  mat-flat-button  type="submit" (click)="confirmar()" [disabled]="!exclusaoAnuncioForm.valid">Confirmar</button>
+</div>
+<br/>
+<mat-divider></mat-divider>
+
+    <div style="font-size: 0.9rem; padding: 2px; font-weight: 600; text-align:center;">
+        <img src="assets/images/logo_300x300.png" alt="homepage" class="logo" ><br/>
+        O Maior Portal de Classificados<br/>
+        De Kitesurf do Brasil 
+    </div>
+    <p></p>

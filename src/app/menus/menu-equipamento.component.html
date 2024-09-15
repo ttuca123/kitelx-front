@@ -1,0 +1,17 @@
+<mat-label>Equipamento: {{equipamento.tipo.descricao}}</mat-label>
+<mat-nav-list>
+  
+  <button mat-list-item  style="color: #FFF; background-color: #e9ab2e;" color="warn" type="button" (click)="detalhar($event)" >Detalhar! 
+    <mat-icon matBadgePosition="above after" >star_border</mat-icon></button>  
+
+    <button mat-list-item  style="color: #FFF; background-color: #e9ab2e;" color="warn" type="button" (click)="anunciar($event)" >Anunciar! 
+      <mat-icon matBadgePosition="above after" >star_border</mat-icon></button>
+
+  <button mat-list-item    style="color: #FFF; background-color: #fc4b6c;"  type="button" (click)="editar($event)" >Editar Registro! 
+    <mat-icon matBadgePosition="above after" >star_border</mat-icon></button>     
+
+  <button mat-list-item    style="color: #FFF; background-color: #fc4b6c;"  type="button" (click)="excluir($event)" >Excluir Registro! 
+      <mat-icon matBadgePosition="above after" >delete_forever</mat-icon></button>  
+  
+    
+  </mat-nav-list>

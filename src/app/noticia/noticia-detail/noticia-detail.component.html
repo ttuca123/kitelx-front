@@ -1,0 +1,45 @@
+<div style="margin-left:1rem;">
+  <mat-card class="info-card mat-elevation-z8" flex="120"
+    style="max-width: 800px; margin-left: auto; margin-right: auto;">  
+    <div class="container">
+      <div style="margin: 10px;">
+        <div>
+          <img class="card-img-top" [src]="noticia.foto" height="400" alt="Photo of a Shiba Inu">
+        </div>
+      </div>
+    </div>
+
+    <main role="main" class="container">
+      <div class="row" style="padding: 10px;">
+        <div class="blog-main">
+          <h3 class="pb-3 mb-4 font-weight-normal border-bottom">
+            Kite {{noticia.categoria}}
+          </h3>
+
+          <div class="blog-post">
+            <h4 class="blog-post-title"> <div [innerHTML]="noticia.titulo"></div> </h4>
+            <p class="blog-post-meta font-italic text-muted">{{noticia.data | date:'dd/MM/yyyy HH:mm'}} by {{noticia.creditos}}</p>
+
+            <div [innerHTML]="noticia.descricao"></div>
+            
+          </div>
+        </div>
+        <div fxLayout="row" *ngIf="edicao">
+
+          <mat-divider [inset]="true"></mat-divider>
+          <br />
+          <button id="btn_inserir" mat-button color="primary" type="button" (click)="editar()" >
+            EDITAR 
+          </button>
+          <button id="btn_excluir" mat-button color="primary" type="button" (click)="excluir()">
+            EXCLUIR
+          </button>
+          {{bloqueio}} {{localUser?.idUsuario}}        
+        </div>
+
+      </div>
+
+    </main>
+    </mat-card>
+  </div>
+  

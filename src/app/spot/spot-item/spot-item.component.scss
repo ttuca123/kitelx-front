@@ -1,0 +1,76 @@
+::ng-deep {
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');      
+  
+     .container {
+      .descricao{
+        background-color: #213D5B;
+        color: white;
+      }
+     }
+     .img-spot{
+      width:100%; 
+      height: 336px; 
+      filter: brightness(90%);
+     }
+      .painel-transparente{
+
+        opacity: 0.3;
+        position: absolute;
+        top:0%;
+        background-color: black;
+        max-width: 21rem;
+        height: 336px;
+      }
+     
+     .titulo-spot{
+      position: absolute;
+      top: 40%;
+      left: 25%;
+      right: 25%;
+      bottom: 60%;       
+      font-family: 'Muller';
+      font-size: 36px;
+      font-weight: 900;
+      font-style: normal;
+      color: white;
+      z-index: 500;      
+    }    
+
+    .subtitulo{
+      position: relative;
+      
+      font-family: 'Muller';
+      font-size: 1rem;
+      font-weight: 600;
+      font-style: normal;      
+      z-index: 500; 
+    }
+
+     div.polaroid {
+      max-width: 21rem;      
+      background-color: white;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-bottom: 25px;
+    }
+    
+    div.container {
+      text-align: center;
+      padding: 10px 20px;           
+    }
+    }
+  
+    @media only screen and (max-width: 560px) {
+      .img-spot{
+        width: 100% !important;
+        height: 209px !important; 
+       }
+       .titulo-spot {
+        top: 25%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+    }
+  
+  
+  

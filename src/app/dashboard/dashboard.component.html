@@ -1,0 +1,83 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+<section style="margin: 2px;">
+  <h3 class="d-none">Banner de apresentação - Comprar ou vender seu equipamento?</h3>
+  <patrocinador-carousel override></patrocinador-carousel>
+</section>
+         
+<section fxLayout="row" fxLayoutAlign="center center" >
+  <h3 class="d-none">Filtro de busca da KiteLX</h3>
+  <app-anuncio-filter-dash [total]='total'></app-anuncio-filter-dash>  
+  <br />
+  <a href="#noticias" style="color: blue;" *ngIf="false">
+    <span>Veja + Noticias </span>
+  </a>  
+</section>
+
+
+<section >
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <a href="https://www.instagram.com/griloboards/?hl=pt-br"><img src="https://patrocinadores-kite.s3.us-west-1.amazonaws.com/GRILO+BOARDS.jpg" class="img-fluid" style=" padding: 1.0rem;  max-height: 250px; " ></a>
+  </div>  
+</section>
+
+<section id="destaques" fxLayout="row" fxLayoutAlign="center center">
+  <div id="destaque-anuncio" class="container anuncio">
+        <div class="row destaque-anuncio__titulo" >
+          <h2 class="titulo">Destaques</h2>
+        </div>
+        <div class="row" *ngIf="true">
+            <anuncio-destaque [total]='total'> </anuncio-destaque> 
+        </div>
+  </div>
+</section>
+
+<section id="patrocinadores" *ngIf="true">
+  
+    <div id="destaque-anuncio" class="container anuncio" *ngIf="true">                  
+        <app-spot-destaque class="sport-destaque" [total]='total'></app-spot-destaque>                
+    </div>
+  
+
+  <section id="noticias" >
+      <div class="container anuncio" >                  
+          <app-noticia-list class="sport-destaque"></app-noticia-list>
+      </div>
+  </section>
+
+  
+
+  <section id="blogDoKite" class="blogDoKite" *ngIf="false">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="margin-top: 5%;">
+          <img class="img-blogDoKite" src="../../assets/images/blogdokite.png">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <div class="box-blog">
+            <div class="img-box">
+            </div>
+            <div class="titulo-box-blog">
+              <h2>campeonato de KiteSurf</h2>
+            </div>
+            <div class="corpo-bpx">
+              <p>
+                Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos,
+                e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja
+                de tipos e os embaralhou para fazer um livro de modelos de tipos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+
+        </div>
+        <div class="col-md-3 col-sm-12">
+
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,272 @@
+
+
+<div @fade [ngStyle]="{'background-image':'url(./assets/images/background/back.png)'}">  
+
+
+  <div align="center" layout="row" layout-align="center center" >
+    <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded"
+                    style="opacity: 0.9; max-width: 800px;">  
+  <div class="row justify-content-md-center" *ngIf="marcas.length==0 else AnuncioDestaque">   
+    <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
+      
+        
+          <div class="p-d-flex p-mb-3">              
+            
+              <div>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+                  <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton>
+                  <p-skeleton height=".5rem"></p-skeleton>
+              </div>
+          </div>
+          <p-skeleton width="100%" height="150px"></p-skeleton>
+  </div>
+  </div>
+</div>
+</div>
+<ng-template #AnuncioDestaque>
+<div align="center" layout="row" layout-align="center center" >
+  <div class="container shadow-sm p-3 mb-5 bg-white rounded"
+                  style="opacity: 0.9; max-width: 800px;">                                    
+                  
+                    <form #anuncioForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+                      (ngSubmit)="addAnuncio()">
+                      
+                        {{titulo}}
+
+                        <div *ngIf="localUser?.perfil == 1">
+                          <ng-template matStepLabel>Destaque?</ng-template>
+          
+                            <mat-slide-toggle   [(ngModel)]="anuncio.destaque"  [ngModelOptions]="{standalone: true}"
+                              >Destaque?</mat-slide-toggle>
+                        </div>
+
+                        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                          <mat-form-field fxFlex="45" >
+                            
+                            <mat-select id="estado" name="estado" #estadoField placeholder="Estado"
+                              [(ngModel)]="anuncio.estado.id" required>
+                              <mat-option [value]="estado.id" *ngFor="let estado of estados" (click)="carregarCidades(estado)">
+                                {{ estado.nome }}
+                              </mat-option>
+                            </mat-select>
+                            
+                          </mat-form-field>
+
+                          <mat-form-field fxFlex="45" *ngIf="anuncio.estado.id" >
+                            
+                            <mat-select id="cidade" name="cidade" #cidadeField placeholder="Cidade"
+                              [(ngModel)]="anuncio.cidade.id" >
+                              <mat-option [value]="cidade.id" *ngFor="let cidade of cidades" (click)="definirLocalidade(cidade)">
+                                {{ cidade.nome }}
+                              </mat-option>
+                            </mat-select>
+                            
+                          </mat-form-field>
+                      </div>
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+
+                        <mat-form-field fxFlex="45">
+
+                          <mat-select id="tipo" name="tipo" #tipoAnuncioField placeholder="Tipo "
+                            [(ngModel)]="anuncio.tipo.id" required>
+                            <mat-option [value]="tipo.id" *ngFor="let tipo of tipos;" (click)='selecionarTipoEquipamento(tipo)' >
+                              {{ tipo.descricao }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+
+                        <mat-form-field fxFlex="45">
+
+                          <mat-select id="marca" name="marca" #marcaField placeholder="Marca"
+                            [(ngModel)]="anuncio.marca.id" required>
+                            <mat-option [value]="marca.id" *ngFor="let marca of marcas" (click)="carregarModelos(marca, anuncio.tipo.id)">
+                              {{ marca.descricao}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45" *ngIf="anuncio.marca.id==999">
+                          <input id="outras_marca" name="outras_marca" matInput type="text" placeholder="Outra Marca"
+                            #outraMarcaField="ngModel" [(ngModel)]="anuncio.outraMarca" maxlength="30" />
+
+                        </mat-form-field>
+                      </div>
+                      
+                        <div *ngIf="anuncio.tipo.id==0">
+                          <ng-template matStepLabel>Possui Barra?</ng-template>
+          
+                            <mat-slide-toggle   [(ngModel)]="anuncio.barra"  [ngModelOptions]="{standalone: true}"
+                              >Possui Barra?</mat-slide-toggle>
+                        </div>
+
+                        <mat-form-field fxFlex="45" *ngIf="anuncio.tipo.id==7">
+
+                          <mat-select id="tipoAcessorio" name="tipoAcessorio" #tipoAcessorioField placeholder="Tipo "
+                            [(ngModel)]="anuncio.acessorio.id" required>
+                            <mat-option [value]="acessorio.id" *ngFor="let acessorio of acessorios;" >
+                              {{ acessorio.descricao }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" *ngIf="anuncio.marca.id!=null">                                               
+
+                        <mat-form-field fxFlex="45" *ngIf="modelos.length>0">
+                          
+                          <mat-select id="modelo" name="modelo" #modeloField placeholder="Modelo"
+                            [(ngModel)]="anuncio.modelo.id" required>
+                            <mat-option [value]="modelo.id" *ngFor="let modelo of modelos" (click)='selecionarModelo(modelo)'>
+                              {{ modelo.descricao }}
+                            </mat-option>
+                          </mat-select>
+                          
+                        </mat-form-field>
+                        <mat-form-field fxFlex="45" *ngIf="modelos.length==0">
+                          <input id="modelodesc" name="modelodesc" matInput type="text" placeholder="Modelo" #modeloDescField="ngModel"
+                            [(ngModel)]="anuncio.modelo.descricao" disabled />                          
+                          <mat-icon (click)="carregarModelos(anuncio.marca, anuncio.tipo.id)">loop</mat-icon>
+                        </mat-form-field>                                                
+
+                       
+                      </div>
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45">
+                          <mat-label>Tamanho (Metros) </mat-label>
+                          <input id="size" name="size" matInput type="text" #tamanhoField="ngModel" maxlength="30"
+                            minlength="1" [(ngModel)]="anuncio.tamanho" />
+                            
+                        </mat-form-field>
+
+                      <mat-form-field class="example-margin" fxFlex="45">
+                        <mat-label>Ano </mat-label>
+                        <input id="ano" name="text" matInput type="text" #anoField="ngModel" maxlength="4" minlength="4"
+                          [(ngModel)]="anuncio.ano" ano/>                            
+                          <mat-error *ngIf="anoField.errors?.required">
+                            Somente são aceitos dígitos para o ano
+                          </mat-error>
+                      </mat-form-field>
+
+                    </div>
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45" *ngIf="anuncio.modelo.id==999">
+                          <input id="outros_modelo" name="outros_modelo" matInput type="text" placeholder="Outro Modelo"
+                            #outroModeloField="ngModel" [(ngModel)]="anuncio.outroModelo" maxlength="30" />
+
+                        </mat-form-field>
+                      </div>
+                      
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxFlex="45">
+
+                        <mat-form-field>
+                          <textarea id="observacao" name="observacao" #observacaoField class="form-control" matInput
+                            placeholder="Observação. Max: (200 caracteres)" [(ngModel)]="anuncio.observacao" maxlength="200"
+                            style="height: 100px;"></textarea>
+                        </mat-form-field>
+                      </div>             
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxFlex="45">
+                        <mat-form-field fxFlex="45" >
+                          <input id="valor" name="valor"
+                            #valorField="ngModel"
+                            (focusout)="formatarValor(valorField.value)"
+                            matInput
+                            
+                            type="text"                                                        
+                            class="form-control"  placeholder="Valor R$"
+                            [(ngModel)]="anuncio.valor" required
+                            />
+                        </mat-form-field>
+                      </div>                      
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <div class="form-group">
+                            <label for="file">Total de Fotos: {{anuncio.fotos.length}}</label>
+                            <app-foto [fotos]='anuncio.fotos' (excluir)='removerFotos($event)'></app-foto>
+                        </div>
+                      </div>
+
+                      <mat-divider [inset]="true"></mat-divider>
+                      <mat-hint *ngIf="error">
+                        <div class="alert alert-danger" role="alert">
+                          {{msgErro}}
+
+                        </div>
+                      </mat-hint>
+
+                      <mat-error *ngIf="error">
+                        <div class="alert alert-danger" role="alert">
+                          É necessário pelo menos 1 foto para anunciar
+                        </div>
+                      </mat-error>
+                      
+                        <div *ngIf="anuncio.id==null">
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary"
+                            [disabled]="!anuncioForm.valid || anuncio.fotos.length==0">
+                            Publicar
+                          </button>
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+                            (click)="limparForm()">
+                            Limpar
+                          </button>
+                        </div>
+                        <div *ngIf="anuncio.id!=null">
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" [disabled]="!anuncioForm.valid || anuncio.fotos.length==0">
+                            Editar
+                          </button>
+                          
+                  
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="gray" type="button"
+                            (click)="limparForm()">
+                            Limpar
+                          </button>
+                        </div>
+                      
+                      <mat-hint *ngIf="submitted">
+                        <div class="alert alert-success" role="alert">
+                          {{msgSucesso}}
+
+                        </div>
+                      </mat-hint>
+                     
+                    
+                    </form>
+                  </div>  
+    </div>
+  </ng-template>
+</div>

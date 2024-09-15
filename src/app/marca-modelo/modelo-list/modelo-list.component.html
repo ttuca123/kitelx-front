@@ -1,0 +1,14 @@
+  
+ <div  class="container" > 
+    <div class="row justify-content-md-center" >          
+      <div class="col-md-auto " *ngFor="let modelo of modelos;">        
+        <app-modelo-item [modelo]='modelo'></app-modelo-item>
+        <p></p>
+      </div>
+    </div>             
+  </div>       
+
+<mat-panel-description>
+    <mat-paginator [length]="pager?.totalElements" (page)="paginar($event)" [pageSize]="pager?.size" #paginador>
+    </mat-paginator>
+</mat-panel-description>

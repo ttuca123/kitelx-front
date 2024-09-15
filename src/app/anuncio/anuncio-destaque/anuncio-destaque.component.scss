@@ -1,0 +1,101 @@
+::ng-deep {
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+.custom-carousel {
+  width: 15rem!important;
+  border: none !important;
+  box-shadow: 0px 10px 30px ;
+  border-radius: 20px !important;
+  cursor: pointer;
+
+
+  .card-body {
+    background-color: #213D5B;
+    color: white;
+    font-size: 10px;
+    border: none;
+    box-shadow: 0px 10px 30px ;
+    height: 120px!important;
+    width: 220px!important;
+    .card-title {
+      color: #fff;
+      font-family: Roboto;
+      letter-spacing: .2pt;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .card-footer {
+    border-radius: 0px 0px 20px 20px !important;
+    background-color: #213D5B;
+    width: 220px;
+    span {
+      font-family: Roboto;
+      float: right;
+      font-size: 1.2rem;
+      color: #f86a49;
+
+    }
+  }
+}
+}
+.card-img-top {
+margin-top:1rem;
+width: 260px!important;
+height: 180px!important;
+border-radius: 20px 20px 0px 0px !important;
+border: none !important;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.slider {
+  max-width: 600px;
+  text-align: center;
+  overflow: auto;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .slides {
+    display: flex;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .slides {
+
+
+    display: flex;
+    
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+  }
+}
+
+.slides > div {
+  background: transparent;
+}
+
+@media only screen and (min-width: 600px) {
+  .anuncio2{
+    max-width: 100%;
+  }
+}
+
+

@@ -1,0 +1,90 @@
+
+
+<div   layout-align="start">
+    <div   [ngStyle]="{'color': 'white'}">
+      
+      <div  style="margin-left:1rem;" >
+        <mat-card
+          class="info-card mat-elevation-z8"
+          flex="120" style="max-width: 800px; margin-left: auto; margin-right: auto;"          
+        >     
+        
+        <div layout="row"  >
+          <div class="slides" >
+            <div class="slider" *ngFor="let foto of equipamento?.fotos" >
+              <img class="img-fluid" [src]="foto.nome" >    
+            </div>    
+          </div>   
+        </div>        
+    
+          <mat-card-title  ><h2> {{equipamento.tipo.descricao}} </h2></mat-card-title>     
+      
+          <mat-divider></mat-divider>
+          <mat-card-content  >                   
+              
+            
+            <div  >
+              <b><h4>Detalhe</h4></b>
+            </div>
+            <div >
+              <div class="row">                                
+                <div class="col">
+                  <b>Marca: </b>                                    
+                  <p></p>
+                  <div *ngIf="equipamento.marca.id!=999">{{equipamento.marca.descricao}} </div>
+                  <div *ngIf="equipamento.marca.id==999">{{equipamento.outraMarca}} </div>
+
+                </div>
+                <div class="col">
+                  <b>Modelo</b>
+                  <p></p>
+                  <span *ngIf="equipamento.modelo.id!=999">{{equipamento.modelo.descricao}} </span>
+                  <span *ngIf="equipamento.modelo.id==999">{{equipamento.outroModelo}} </span>
+                </div> 
+                <div class="col">                  
+                  <b>Ano</b>
+                  <p></p>
+                  {{equipamento.ano}}
+                </div> 
+              </div>
+              <p></p>
+              <div class="row">
+                  
+                   
+                  <div class="col">
+                    <b>Tamanho</b>
+                    <p></p>
+                    {{equipamento.tamanho}}
+                  </div>      
+                  <div class="col">
+                    <b>Serial</b>
+                    <p></p>
+                    {{equipamento.serial}}
+                </div>
+                <div class="col" *ngIf="equipamento.tipo.id==0">
+                  <b>Barra</b>
+                  <p></p>
+                  {{equipamento.barra?'SIM':'NÃO'}}
+                </div>  
+              </div> 
+              <p></p>             
+                            
+              <p></p>
+              <div class="row">     
+                <div class="col">
+                  <b>Observação</b>
+                  <p></p>             
+                  {{equipamento.observacao}}            
+                </div>
+              </div>
+
+            </div>            
+              <p></p>                           
+              
+              
+          </mat-card-content>                         
+        </mat-card>
+      </div>
+      </div>
+ </div>
+

@@ -1,0 +1,50 @@
+  <div [ngStyle]="{'background-image':'url(./assets/images/background/1.jpg)'}">
+
+  <div layout-fill style="opacity: 0.9;" >
+      
+    <div *ngIf="_reload">
+      <app-equipamento-form [equipamento]='equipamento' [usuario]='usuario' (atualizarEquipamentos)='atualizarEquipamentos($event)' ></app-equipamento-form>
+    </div>
+    <br />
+
+    <div class="container-fluid" style="opacity: 0.9; max-width: 800px;" *ngIf="_reload">
+
+      <!--Tabela dinâmica para manipulação dos ítens de compra -->
+
+      <div class="container-fluid" >
+        <div class="row">
+
+          <div class="col-sm3" *ngFor="let equipamento of usuario.equipamentos;">
+            <equipamento-item [equipamento]='equipamento' (acaoEquipamento)="filtrarAcao($event)"></equipamento-item>
+            <p></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>

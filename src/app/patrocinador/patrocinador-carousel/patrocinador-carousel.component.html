@@ -1,0 +1,31 @@
+<div id="slides">
+
+    <mat-carousel
+    id="banners"    
+    timings="250ms ease-in"
+    [autoplay]="true"
+    interval="5000"
+    color="orange"
+    maxWidth=""  
+    [proportion]="proporcao"      
+    [slides]="banners.length"
+    [loop]="true"
+    [hideArrows]="false"
+    [hideIndicators]="false"
+    [useKeyboard]="true"
+    [useMouseWheel]="false"    
+    >
+    <mat-carousel-slide
+      #matCarouselSlide
+      id="carousel2"
+      *ngFor="let foto of banners; let i = index"  
+      [routerLink]="foto.site" 
+      [image]="foto.urlImagem"          
+      overlayColor="#00000040"
+      [hideOverlay]="true" 
+      
+      
+    ></mat-carousel-slide>
+
+    </mat-carousel>
+  </div>

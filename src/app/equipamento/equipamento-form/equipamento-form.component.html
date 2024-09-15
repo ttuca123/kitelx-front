@@ -1,0 +1,192 @@
+<div align="center" layout="row" layout-align="center center" >
+
+      <mat-accordion flex="100" style="margin-top: 0px;max-width: 800px;;" *ngIf="!loadFotos" >
+        <mat-expansion-panel flex="100" style="margin-top: 0px;max-width: 800px;;" [expanded]="!toggleAberto"
+          [hideToggle]="!toggleAberto">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+                {{titulo}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>         
+              
+                <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded"
+                  style="opacity: 0.9; max-width: 800px;">                                    
+                  
+                    <form #equipamentoForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+                      (ngSubmit)="addEquipamento()">
+                     
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+
+                        <mat-form-field fxFlex="45" >
+                          <mat-select id="tipo" name="tipo" #tipoEquipamentoField placeholder="Equipamento"
+                            [(ngModel)]="equipamento.tipo.id" required>
+                            <mat-option [value]="tipo.id" *ngFor="let tipo of tipoEquipamentos$ | async;" (click)='selecionarTipoEquipamento(tipo)' >
+                              {{ tipo.descricao }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field fxFlex="45">
+
+                          <mat-select id="marca" name="marca" #marcaField placeholder="Marca"
+                            [(ngModel)]="equipamento.marca.id" required>
+                            <mat-option [value]="marca.id" *ngFor="let marca of marcas$ | async" (click)="carregarModelos(marca, equipamento.tipo.id)">
+                              {{ marca.descricao}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                      </div>
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45" *ngIf="equipamento.marca.id==999">
+                          <input id="outras_marca" name="outras_marca" matInput type="text" placeholder="Outra Marca"
+                            #outraMarcaField="ngModel" [(ngModel)]="equipamento.outraMarca" maxlength="30" />
+
+                        </mat-form-field>
+                      </div>                      
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" *ngIf="equipamento.marca.id!=null">                                               
+
+                        <mat-form-field fxFlex="45" *ngIf="modelos.length>0">
+                          
+                          <mat-select id="modelo" name="modelo" #modeloField placeholder="Modelo"
+                            [(ngModel)]="equipamento.modelo.id" required>
+                            <mat-option [value]="modelo.id" *ngFor="let modelo of modelos" (click)='selecionarModelo(modelo)'>
+                              {{ modelo.descricao }}
+                            </mat-option>
+                          </mat-select>
+                          
+                        </mat-form-field>
+                        <mat-form-field fxFlex="45" *ngIf="modelos.length==0">
+                          <input id="modelodesc" name="modelodesc" matInput type="text" placeholder="Modelo" #modeloDescField="ngModel"
+                            [(ngModel)]="equipamento.modelo.descricao" disabled />                          
+                          <mat-icon (click)="carregarModelos(equipamento.marca, equipamento.tipo.id)">loop</mat-icon>
+                        </mat-form-field>                        
+
+                        <mat-form-field fxFlex="45" *ngIf="!isAnuncio">
+                          <input id="serial" name="serial" matInput type="text" placeholder="Serial" #serialField="ngModel"
+                            [(ngModel)]="equipamento.serial" maxlength="36" />
+                        </mat-form-field>
+
+                       
+                      </div>
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45">
+                          <mat-label>Tamanho (Metros) </mat-label>
+                          <input id="size" name="size" matInput type="text" #tamanhoField="ngModel" maxlength="30"
+                            minlength="1" [(ngModel)]="equipamento.tamanho" />
+                            
+                        </mat-form-field>
+
+                      <mat-form-field class="example-margin" fxFlex="45">
+                        <mat-label>Ano </mat-label>
+                        <input id="ano" name="text" matInput type="number" #anoField="ngModel" maxlength="4" minlength="4"
+                          [(ngModel)]="equipamento.ano" ano/>                            
+                          <mat-error *ngIf="anoField.errors?.required">
+                            Somente são aceitos dígitos para o ano
+                          </mat-error>
+                      </mat-form-field>
+
+                    </div>
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <mat-form-field fxFlex="45" *ngIf="equipamento.modelo.id==999">
+                          <input id="outros_modelo" name="outros_modelo" matInput type="text" placeholder="Outro Modelo"
+                            #outroModeloField="ngModel" [(ngModel)]="equipamento.outroModelo" maxlength="30" />
+
+                        </mat-form-field>
+                      </div>
+                      
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxFlex="45">
+
+                        <mat-form-field>
+                          <textarea id="observacao" name="observacao" #observacaoField class="form-control" matInput
+                            placeholder="Observação" [(ngModel)]="equipamento.observacao"></textarea>
+                        </mat-form-field>
+                      </div>             
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxFlex="45">
+                        <mat-form-field fxFlex="45" *ngIf="isAnuncio">
+                          <input id="valor" name="valor"
+                            #valorField="ngModel"
+                            matInput
+                            type="text"                                                        
+                            class="form-control"  placeholder="Valor R$"
+                            [(ngModel)]="anuncio.valor" required
+                            />
+                        </mat-form-field>
+                      </div>
+
+                      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+                        <div class="form-group">
+                            <label for="file">Fotos </label>
+                            <app-foto [fotos]='equipamento.fotos' (excluir)='removerFotos($event)'></app-foto>
+                        </div>
+                      </div>
+
+                      <mat-divider [inset]="true"></mat-divider>
+                      <div *ngIf="!isAnuncio">
+                        <div *ngIf="equipamento.id==null">
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary"
+                            [disabled]="!equipamentoForm.valid">
+                            Adicionar
+                          </button>
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+                            (click)="limparForm()">
+                            Limpar
+                          </button>
+                        </div>
+                        <div *ngIf="equipamento.id!=null">
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" >
+                            Editar
+                          </button>
+                  
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+                            (click)="limparForm()">
+                            Limpar
+                          </button>
+
+                          <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+                            (click)="sincronizarFotosS3()" *ngIf="false">
+                            Sincronizar S3
+                          </button>
+
+                          
+                        </div>
+                      
+                      <mat-hint *ngIf="submitted">
+                        <div class="alert alert-success" role="alert">
+                          {{msgSucesso}}
+
+                        </div>
+                      </mat-hint>
+                      <mat-hint *ngIf="error">
+                        <div class="alert alert-danger" role="alert">
+                          {{msgErro}}
+
+                        </div>
+                      </mat-hint>
+                    </div>
+                    </form>
+                  </div>               
+          
+        </mat-expansion-panel>
+      </mat-accordion>      
+
+    <div align="center" layout="row" layout-align="center center" *ngIf="loadFotos">      
+
+      <div class="block" >        
+        <app-uploading-fotos [porcentTotalFotosEnviadas] ='fotoService.porcentTotalFotosEnviadas' 
+        [totalIncrementar]='fotoService.totalIncrementar' [status]='fotoService.statusFoto' [totalFotosEnviadas]='fotoService.totalFotosEnviadas'
+         [totalFotos]='fotosNovas.length'></app-uploading-fotos>
+        
+         <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary" type="button"
+                            (click)="enviarFotos(equipamento.id)">
+                            Enviar Novamente
+          </button>
+
+      </div>
+      <p></p>
+    </div>
+
+  </div>

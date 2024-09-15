@@ -1,0 +1,51 @@
+.link h6{
+    color: #fd7e14;
+}
+.link ul {
+	position: relative;
+	list-style: none;
+	margin-left: 0;
+
+}
+.link ul li a {
+	color: white;
+}
+.link ul li a:hover{
+	color: #fd7e14;
+    text-decoration: none;
+}
+.link ul.iconz li a:hover{
+	color: white;
+    text-decoration: none;
+}
+.carousel-indicators {
+    left: 0%;
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+}
+.widguru {
+    background-image: url(/src/assets/images/icon/widguru-removebg-preview.png);
+    background-size: cover;
+    width: 34px;
+    height: 34px;
+  }
+  .mat-dialog-container {
+    width: 1000px !important;
+}
+@media (max-width: 768px){
+    .link ul li{
+      margin: 5px;
+      display: inline-flex;
+    }
+    link{
+        margin-bottom: 0px!important;
+    }
+    .mat-dialog-container {
+        height: 450px !important;
+    }
+    .mat-dialog-content {
+        max-height: 350px !important;
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

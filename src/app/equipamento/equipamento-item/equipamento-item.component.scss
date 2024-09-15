@@ -1,0 +1,70 @@
+::ng-deep {
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.p-carousel .p-carousel-indicators {
+  background-color: transparent !important;
+}
+
+.card-style {
+      width: 15rem;
+      border: none !important;
+      box-shadow: 0px 0px 0px ;
+      border-radius: 20px !important;
+      cursor: pointer;
+      margin-right: 4px;
+      margin-left: 4px;
+      margin-top: 4px;
+      background-color: #F3F5F8;
+
+
+
+      .card-body {
+        background-color: #213D5B;
+        color: white;
+        font-size: 10px;
+        border: none;
+        box-shadow: 0px 10px 30px ;
+        height: 150px;
+
+        .card-title {
+          color: #fff;
+          font-family: Roboto;
+          letter-spacing: .2pt;
+          font-size: 1rem;
+          text-transform: uppercase;
+        }
+      }
+
+      .card-footer {
+        border-radius: 0px 0px 20px 20px !important;
+        background-color: #213D5B;
+        span {
+          font-family: Roboto;
+          float: right;
+          font-size: 1.2rem;
+          color: #f86a49;
+        }
+      }
+    }
+    .card .p-carousel-container {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      flex-direction: row;
+      background-color: transparent;
+    }
+
+  }
+  .card-img-top {
+    width: 140px;
+    height: 180px;
+    border-radius: 20px 20px 20px 20px !important;
+    border: none !important;
+    transition: width 2s;
+    transition: height 2s;
+}
+
+/* img:hover {
+  height: 300px;
+} */

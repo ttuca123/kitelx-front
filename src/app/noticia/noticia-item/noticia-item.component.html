@@ -1,0 +1,31 @@
+<div >
+<div id="teste" class="card card-style2" style="border-radius: 50px 50px 20px 20px !important;" *ngIf="false">  
+  <div  class="col-md-6">
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{noticia.titulo}}</h4>
+      </div>
+    </div>
+  </div>  
+</div>
+
+    <div class="col-md-6" (click)="detalhar()">
+      <div class="card mb-4 box-shadow" style="width: 300px;height: 550px;">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{noticia.titulo}}</h4>
+        </div>
+        <img class="card-img-top" [src]="noticia.foto" width="225" height="200" alt="Photo of a Shiba Inu">
+        <div class="card-body">
+          <p class="card-text">{{noticia.subtitulo}}</p>          
+        </div>        
+       
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn">
+            <button [routerLink]="'/noticia/noticia/'+ chave" type="button" class="btn btn-sm btn-outline-secondary">Leia Mais</button>
+          </div>
+          <small style="margin-right: 10px;" class="text-muted">{{noticia.data | date:'dd/MM/yyyy HH:mm'}}</small>
+        </div>
+      </div> 
+  </div>
+</div>
+

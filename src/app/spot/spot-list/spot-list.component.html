@@ -1,0 +1,14 @@
+    <!--Tabela dinâmica para manipulação dos ítens de compra -->
+    
+    <div  class="container" > 
+        <div class="row justify-content-md-center" >            
+          <div class="col-md-auto " *ngFor="let spot of spots;">
+            <app-spot-item [spot]='spot' ></app-spot-item>
+            <p></p>
+          </div>
+        </div>             
+      </div>    
+      <mat-panel-description>
+        <mat-paginator [length]="pager?.totalElements" (page)="paginar($event)" [pageSize]="pager?.size" >
+        </mat-paginator>
+    </mat-panel-description>

@@ -1,0 +1,30 @@
+
+  <div class="card card-style" style="border: 1px solid greenyellow;">
+    <p-carousel [value]="equipamento.fotos" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions" >
+      <ng-template let-foto pTemplate="foto">
+        <div class="product-item" >
+          <div class="p-mb-3">
+            <img class="card-img-top"  [src]="foto.nome" (click)="verificarAcaoEquipamento(foto)">            
+          </div>
+        </div>
+
+      </ng-template>
+    </p-carousel>
+
+
+    <div class="card-body" (click)="verificarAcaoEquipamento(equipamento)">
+      <h5 class="card-title">{{equipamento.tipo.descricao}}</h5>
+      <ul>
+        <li *ngIf="equipamento.marca.id!=999">{{equipamento?.marca.descricao}}</li>
+        <li *ngIf="equipamento.marca.id==999 ">{{equipamento?.outraMarca}}</li>
+        <li *ngIf="equipamento.modelo.id!=999">{{equipamento?.modelo.descricao}}</li>  
+        <li *ngIf="equipamento.modelo.id==999 &&equipamento?.outroModelo?.length>0">{{equipamento?.outroModelo}}</li>        
+        <li *ngIf="equipamento.tipo.id==0">Barra: {{equipamento.barra?'SIM':'NÃO'}}</li>
+        <li>Tam. {{equipamento.tamanho}}</li>
+        <li>Ano. {{equipamento.ano}}</li>
+        <li>Serial. {{equipamento.serial}}</li>
+      </ul>
+
+    </div>
+    <mat-divider></mat-divider>
+  </div>

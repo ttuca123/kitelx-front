@@ -1,0 +1,120 @@
+<div fxLayout="row" fxLayoutAlign="space-around start">
+    <app-upload-files fxFlex="60"></app-upload-files>
+    <app-my-files fxFlex="30"></app-my-files>
+</div>
+
+<form #noticiaForm="ngForm" fxLayout="column" fxLayoutAlign="start stretch"
+(ngSubmit)="addNoticia()" *ngIf="true">
+    <div  style="padding: 16px;" >    
+        Foto de Título
+        <div fxLayout="row" style="text-align: center;">
+            <div  layout-fill [ngStyle]="{'color': 'white'}">
+                
+                <div fxFlex="45" fxLayout="row" fxLayoutAlign="space-between start">
+                    
+                  <input type="file"  
+                        id="file"  mat-input
+                        (change)="adicionarFoto($event)" />
+                </div>
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" >
+                    <img [src]='noticia?.foto' />
+                </div>
+              
+            </div>
+            
+            
+
+            
+        </div>
+        <div fxLayout="row" style="text-align: center;">
+
+            <mat-form-field fxFlex="20" >
+                          
+                <mat-select id="categoria" name="categoria" #CategoriaField placeholder="Categoria"
+                  [(ngModel)]="noticia.categoria" required>
+                  <mat-option [value]="categoria" *ngFor="let categoria of categorias$  | async" >
+                    {{ categoria }}
+                  </mat-option>
+                </mat-select>
+                
+              </mat-form-field>              
+        </div>
+        <div fxLayout="row" style="text-align: center;">
+
+            <div fxFlex="45" fxLayout="row" fxLayoutAlign="space-between start">
+                <mat-form-field fxFlex="45">
+                <mat-label>Titulo </mat-label>
+                <input id="size" name="size" matInput type="text" #tituloField="ngModel" maxlength="30"
+                    minlength="1" [(ngModel)]="noticia.titulo" />
+                    
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" style="text-align: center;">
+
+            <div fxFlex="45" fxLayout="row" fxLayoutAlign="space-between start">
+                <mat-form-field fxFlex="45">
+                <mat-label>Subtitulo </mat-label>
+                <input id="size" name="size" matInput type="text" #tituloField="ngModel" maxlength="80"
+                    minlength="1" [(ngModel)]="noticia.subtitulo" />
+                    
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" style="text-align: center;">
+
+            <div fxFlex="45" fxLayout="row" fxLayoutAlign="space-between start">
+                <mat-form-field fxFlex="45">
+                <mat-label>Créditos </mat-label>
+                <input id="size" name="size" matInput type="text" #tituloField="ngModel" maxlength="80"
+                    minlength="1" [(ngModel)]="noticia.creditos" />
+                    
+                </mat-form-field>
+            </div>
+        </div>
+
+
+
+        <p-editor [(ngModel)]="noticia.descricao" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}"></p-editor>   
+        
+        
+        <mat-card style="width: 396px; height: 423px; ">
+            
+                <img [src]='noticia.foto' style="width: 396px; height: 223px; " />
+            
+            
+            
+            <mat-card-content>
+                <div fxLayout="row" style="text-align: center;">
+                    <label style="font-weight: 800;align-items: center;"> {{noticia.titulo}} </label>
+                </div>
+                <p></p>
+                <div [innerHTML]="noticia.subtitulo"></div>
+            </mat-card-content>    
+                <!--<div [innerHTML]='noticia.descricao' style="height: 300px; max-width: 300px;"></div>    !-->
+            <mat-card-actions>
+                {{noticia.categoria.id}}
+            </mat-card-actions>
+            
+        </mat-card>
+        <div [innerHTML]="noticia.descricao"></div>
+        <button class=" m-r-20 hidden-sm-up" mat-flat-button color="primary"
+        [disabled]="!noticiaForm.valid && id==undefined">
+        Publicar
+      </button>
+      <mat-hint *ngIf="submitted">
+        <div class="alert alert-success" role="alert">
+          {{msgSucesso}}
+
+        </div>
+      </mat-hint>
+    </div>
+
+    
+
+    
+    
+    
+</form>

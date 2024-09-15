@@ -1,0 +1,85 @@
+
+<div layout="column" layout-fill style="background: url(assets/images/background/1.jpg); margin-left: auto; margin-right: auto; margin-top: 20px;">
+    
+    
+    <div  layout-fill [ngStyle]="{'color': 'white'}">
+      
+      <div align="center" layout="row" layout-align="center center" style="opacity : 0.9;">
+        <mat-card
+          class="info-card mat-elevation-z8"
+          flex="80"
+          style="margin-top: 0px;max-width: 800px;;"
+        >       
+    
+          <mat-card-title> {{titulo}} </mat-card-title>          
+         <mat-card-content>
+              
+            <form
+              fxLayout="column"
+              fxLayoutAlign="start stretch"
+              #parceiroForm="ngForm"              
+              id="frm_parceiro_form"
+            >
+            <div fxFlex="100" fxLayoutAlign="start">
+              <h4>Dados do Parceiro:</h4>
+            </div>       
+              <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+                <mat-form-field fxFlex="45">
+                  <input
+                    id="ipt_nome"
+                    name="nome"
+                    autocomplete="off"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    matInput
+                    type="text"
+                    class="form-control"
+                    value=""
+                    placeholder="Nome"
+                    [(ngModel)]="parceiro.nome"
+                    #nomeField = "ngModel"
+                  />              
+                </mat-form-field>  
+
+                <mat-form-field fxFlex="45">   
+                      
+                    <input
+                      id="ipt_fone"
+                      name="fone"                      
+                      maxlength="16"
+                      matInput
+                      type="text"
+                      class="form-control"
+                      value=""
+                      placeholder="Fone"
+                      [(ngModel)]="parceiro.fone" 
+                      #foneField = "ngModel"
+                      required                     
+                    />                   
+                  </mat-form-field>                   
+              </div>                
+                <p></p>
+                <mat-hint *ngIf="foneField.invalid" class="field-error">
+                  <p>Digite um telefone válido</p>
+                </mat-hint>                          
+
+                  <mat-dialog-actions>                 
+                    
+                    <button
+                      id="btn_salvar"
+                      class=" m-r-20 hidden-sm-up"
+                      mat-flat-button color="primary"                      
+                      type="submit"                 
+                      
+                    >
+                  SALVAR
+              </button>
+            </mat-dialog-actions>
+            </form>
+          </mat-card-content>
+          
+        </mat-card>
+      </div>
+      </div>
+    </div>
