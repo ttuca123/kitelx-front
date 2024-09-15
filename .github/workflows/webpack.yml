@@ -1,4 +1,4 @@
-name: workflow name
+name: workflow kite
 
 on:
   push:
@@ -45,8 +45,9 @@ jobs:
           path: docs      
        
   deploy:
+    name: Deploy
     runs-on: ubuntu-20.04
-    needs: build
+    needs: build-and-test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
