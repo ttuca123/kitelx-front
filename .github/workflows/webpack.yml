@@ -4,9 +4,26 @@ on:
   push:
     branches:
       - 'main'
+  pull_request:
+    branches: "main"
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.14.0-alpha.0
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.14.0-alpha.0
+
+    - name: Verify Python version
+      run: python --version
+
+  build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
