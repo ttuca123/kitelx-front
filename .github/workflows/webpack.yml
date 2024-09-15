@@ -12,17 +12,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node 16.x
+      - name: Use Node 16.19.0
         uses: actions/setup-node@v2
         with:
-          node-version: '16.X'
+          node-version: '16.19.0'
       - name: Install dependencies
         run: npm i -f
       - name: Build
         run: npm run build 
       - name: Archive build
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: deploy_dist
           path: docs      
