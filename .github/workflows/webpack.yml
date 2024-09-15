@@ -25,12 +25,12 @@ jobs:
 
   build-and-test:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
       - name: Use Node 16.19.0
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: '16.19.0'
       - name: Install dependencies
@@ -39,19 +39,19 @@ jobs:
         run: npm run build 
       - name: Archive build
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: deploy_dist
           path: docs      
        
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: deploy_dist
       - name: Deploy to GitHub Pages
